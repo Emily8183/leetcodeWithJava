@@ -2,15 +2,18 @@
  * @lc app=leetcode id=704 lang=java
  *
  * [704] Binary Search
- * Solution:
+ * Steps:
  * 1) Use Binary Search to pursue the runtime complexity O(logn) (Can only use this algorithm when the array is sorted)
  * 2) Iterate the array with a while loop:
    *Find a mid point, compare the target with the mid point;
    *If-else: search in the left and right, if the target is smaller than the mid point, search in the left;
    Else if search in the right;
    Else return -1 if the target is not found.
-   3) Notice the settings for the range of the while loop, while (left <= right), it means [left, right]; 
+   
+   Tips:
+   1) Notice the settings for the range of the while loop, while (left <= right), it means [left, right]; 
    You can also set as while (left<right) as the condition, but you will need to change the left and right to [left, right);
+   2) While we use Math.floor() in JavaScript, when we divide two integers in Java, the output is always an integer.
  */
 
 // @lc code=start
