@@ -8,7 +8,7 @@
    *Find a mid point, compare the target with the mid point;
    *If-else: search in the left and right, if the target is smaller than the mid point, search in the left;
    Else if search in the right;
-   Else return -1 if the target is not found.
+   Else return -1 if the target is not found.1
    
    Tips:
    1) Notice the settings for the range of the while loop, while (left <= right), it means [left, right]; 
@@ -25,12 +25,12 @@ class Solution {
       
         while (left <= right ) {
             //注意这里是<=，说明是个左闭右闭的区间
-            int mid = (left+right)/2;
-            //auto rounded-down in Java
+            // int mid = (left+right)/2   不建议这个做法，prevent from overflow
+            int mid = left + (right - left) / 2;
             
            if (target > nums[mid] ) {
                 left = mid + 1;
-                 //注意这里mid -1，保持左闭右闭的区间
+                 //注意这里mid +1，保持左闭右闭的区间
             }
             else if (target < nums[mid]) {
                 right = mid - 1;
