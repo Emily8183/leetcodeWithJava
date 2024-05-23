@@ -14,6 +14,7 @@
    1) Notice the settings for the range of the while loop, while (left <= right), it means [left, right]; 
    You can also set as while (left<right) as the condition, but you will need to change the left and right to [left, right);
    2) While we use Math.floor() in JavaScript, when we divide two integers in Java, the output is always an integer.
+   3) However, the sum of left and right could cause overflow. So we are using the formula left + (right - left) / 2 to prevent overflow.
  */
 
 // @lc code=start
@@ -25,7 +26,7 @@ class Solution {
       
         while (left <= right ) {
             //注意这里是<=，说明是个左闭右闭的区间
-            // int mid = (left+right)/2   不建议这个做法，prevent from overflow
+            // int mid = (left+right)/2   不建议这个做法，prevent overflow
             int mid = left + (right - left) / 2;
             
            if (target > nums[mid] ) {
