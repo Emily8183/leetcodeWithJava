@@ -5,9 +5,8 @@
  * 
  *  Steps:
 
- 1 Binary search: O(logn)
- 2 Get the value from two ends of the array, compare the value, and put the smaller one into the result array first. 
- 3 Repeat in the remaining array. 
+ 1 Two pointers: O(n)
+ 2 Compare the values from the two ends of the array. Insert the larger value into the end of the new array to maintain the non-decreasing order.
  */
 
 
