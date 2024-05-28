@@ -23,6 +23,7 @@ class Solution {
             return false;
             }
         }
+        //还有另一种写法，for(int count:record)
 
         return true;
         
