@@ -22,7 +22,7 @@ class Solution {
         ListNode dummyHead = new ListNode(0,head);
         ListNode cur=dummyHead;
 
-        //while loop when not reaching the end of the list for the even case and the odd case (pay attention to the order!)
+        //loop while not reaching the end of the list for the even case and the odd case (pay attention to the order!)
         while(cur.next !=null && cur.next.next != null){
 
         // store two nodes in temp and temp1 before breaking the link
