@@ -22,7 +22,19 @@
  */
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
-        
+        List<Integer> result = new ArrayList<>();
+        postorder(root, result);
+        return result; 
+    }
+
+    public void postorder(TreeNode root, List<Integer> list) {
+        if(root == null) {
+            return;
+        }
+
+        postorder(root.left, list);
+        postorder(root.right, list);
+        list.add(root.val);
     }
 }
 // @lc code=end
