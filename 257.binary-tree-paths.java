@@ -41,11 +41,15 @@ class Solution {
                 if (root.left == null && root.right == null) {
                     // 输出
                     StringBuilder sb = new StringBuilder();// StringBuilder用来拼接字符串，速度更快
+
+                    // 循环遍历 paths 列表，除了最后一个元素，添加到 sb 中并加上 "->"
                     for (int i = 0; i < paths.size() - 1; i++) {
                         sb.append(paths.get(i)).append("->");
                     }
-                    sb.append(paths.get(paths.size() - 1));// 记录最后一个节点
-                    res.add(sb.toString());// 收集一个路径
+
+                    // 添加最后一个节点，不加 "->"
+                    sb.append(paths.get(paths.size() - 1));
+                    res.add(sb.toString());// // 将拼接好的路径字符串添加到结果列表 res 中
                     return;
                 }
                 // 递归和回溯是同时进行，所以要放在同一个花括号里
