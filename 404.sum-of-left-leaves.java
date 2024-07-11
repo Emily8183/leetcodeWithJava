@@ -28,7 +28,7 @@ class Solution {
 
        //使用后序遍历：左右中（=左右根节点）
        //定义左子树中左叶子的总和
-       int valueOfLeftTree = sumOfLeftLeaves(root.left)
+       int valueOfLeftTree = sumOfLeftLeaves(root.left);
 
        if(root.left != null && root.left.left == null && root.left.right == null) {
             valueOfLeftTree= root.left.val;
