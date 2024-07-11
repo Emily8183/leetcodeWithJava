@@ -26,23 +26,23 @@ class Solution {
 
        if (root == null) return 0;
 
+       //使用后序遍历：左右中（=左右根节点）
        //定义左子树中左叶子的总和
-       int valueOfLeftTree = sumOfLeftLeaves(root.left);
-       //定义右子树中左叶子的总和
-       int valueOfRightTree = sumOfLeftLeaves(root.right);
-
-       //midValue 是一个临时变量，用于存储当前节点左叶子节点的值。
-       int midValue = 0;
+       int valueOfLeftTree = sumOfLeftLeaves(root.left)
 
        if(root.left != null && root.left.left == null && root.left.right == null) {
-            midValue = root.left.val;
+            valueOfLeftTree= root.left.val;
        }
 
-       int sum = midValue + valueOfLeftTree + valueOfRightTree;
+        //定义右子树中左叶子的总和
+       int valueOfRightTree = sumOfLeftLeaves(root.right);
+
+       //中
+       int sum = valueOfLeftTree + valueOfRightTree;
        return sum;
 
-        }
     }
+}
         
  
 // @lc code=end
