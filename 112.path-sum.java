@@ -37,14 +37,14 @@ class Solution {
 
          if (root.left != null) {
              boolean left = hasPathSum(root.left, targetsum);
-             if (left) {      // 已经找到
+             if (left) {      // 找到ture 就返回true
                  return true;
              }
          }
 
          if (root.right != null) {
              boolean right = hasPathSum(root.right, targetsum);
-             if (right) {     // 已经找到
+             if (right) {     // 找到ture 就返回true
                  return true;
              }
          }
