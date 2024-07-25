@@ -22,7 +22,7 @@
  */
 class Solution {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
-        List<Integer> inorderList = new ArrayList<>();
+        List<Integer> inorderList = new ArrayList<>(); //存储中序和后序遍历结果的列表
         List<Integer> postorderList = new ArrayList<>();
 
         for(int val:inorder) inorderList.add(val); //通过for-each loop，把题目给到的数组中的每一个元素，添加到List中，这样可以使用 List 的 subList 方法，避免数组的频繁复制
@@ -52,8 +52,9 @@ class Solution {
         List<Integer> leftPostorder = new ArrayList<>(postorder.subList(0, leftInorder.size())); //用左闭右开的方式，在后序遍历中切割出左子树
         List<Integer> rightPostorder = new ArrayList<>(postorder.subList(leftInorder.size(), postorder.size())); //用左闭右开的方式，在后序遍历中切割出右子树
 
-        root.left = traversal(leftInorder, leftPostorder); //遍历左中序和左后序
-        root.right = traversal(rightInorder, rightPostorder); //遍历右中序和右后序
+        root.left = traversal(leftInorder, leftPostorder); //遍历左子树和右子树的中序和后序列表，并构建相应的子树。
+        root.right = traversal(rightInorder, rightPostorder); 
+
 
         return root;
     }
