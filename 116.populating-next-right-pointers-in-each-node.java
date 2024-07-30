@@ -36,36 +36,30 @@ class Solution {
             return null;
         }
 
-        //初始化一个队列，把第一层根节点加入
-        Queue<Node> queue = new LinkedList<>();
-        queue.add(root);
+        connectNode(root.left, root.right);
+        return root;
+    }
 
-        //prev虚拟头节点，用于遍历队列
-        Node prev = null;
-
-        while(!queue.isEmpty()){
-
-            //保存当前层的节点数量
-            int size = queue.size();
-
-            while(size-- > 0){
-                Node cur = queue.poll();
-                if(cur.left != null) queue.add(cur.left);
-                if(cur.right != null) queue.add(cur.right);
-                
-          
-                //利用这两行来更新prev的指针，指向下一个节点，并且不断更新prev
-                if(prev != null) prev.next = cur;
-                prev = cur;
-            }
-            //当size <= 0的时候需要重置prev。
-            prev = null;
+    private void connectNode(Node left, Node right){
+        if(left == null || right == null) {
+            return; //
         }
 
-        return root;
-        
+        //根据题目要求，populate next right pointers in each node
+        left.next = right;
+
+        //递归处理左子树内部的连接
+        connectNode(left.left, left.right);
+
+        // 递归处理右子树内部的连接
+        connectNode(right.left, right.right);
+
+        // 连接相邻子树的节点
+        connectNode(left.right, right.left);
+    
     }
 }
+
 
 
         
