@@ -29,7 +29,7 @@ class Solution {
 
             TreeNode result = null;
 
-            //利用二叉搜索树的特性，先向左搜索，后向右搜索
+            //利用二叉搜索树的特性，如果val<root.val，向左搜索，反之，向右搜索。
             if (val < root.val) {
 
                 result = searchBST(root.left, val);
