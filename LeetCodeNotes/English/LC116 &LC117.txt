@@ -1,0 +1,16 @@
+⭐Background:
+LC116 and LC117 both require filling in each node’s next right pointer. Initially, all next pointers are set to NULL. 
+The difference is that LC116 provides a Perfect Binary Tree, while LC117 provides any binary tree. 
+
+⭐Key Concepts:
+What is a Perfect Binary Tree?
+All non-leaf nodes have two children.
+All leaf nodes are on the same level.
+
+⭐Approach:
+For LC116, the approach takes advantage of the Perfect Binary Tree properties and uses recursion. When encountering a null node on the left or right, the recursion simply returns.
+For LC117, which needs to handle edge cases and single leaf nodes, breadth-first search (BFS) is used to connect nodes on each level.
+
+⭐Learning Tips:
+LC116: Handle the connection of both subtrees (left.right, right.left) in the recursive traversal.
+LC117: Update the prev pointer to point to the next node and continually update prev itself as you traverse forward. When size <= 0, reset prev to null to mark the end of the level traversal.

@@ -1,0 +1,19 @@
+⭐背景：
+LC116和LC117，题目都要填充每一个Node的下一个右侧节点指针（next right pointers)。区别在于LC116给到的是一棵Perfect binary tree，而117给到的是任意二叉树。Initially, all next pointers are set to NULL.
+.
+⭐知识点：
+什么是Perfect binary tree?
+所有的非叶子节点都有两个子节点;
+所有叶子节点都在同一层。
+.
+⭐思路：
+LC116的解题思路可以根据Perfect binary tree的特性，直接用递归遍历，当left or right遇到空结点即返回遍历。
+.
+LC117则需要考虑边界以及单叶子节点的情况，因此用广度优先搜索(BFS)来处理每一层的节点连接。
+.
+⭐注意项：
+LC116:
+递归遍历记得加上(left.right, right.left)这一组的处理，把两棵子树连结起来；
+LC117：
+更新prev的指针，指向下一个节点，并且不断更新prev自身，从而往后遍历；
+当size <= 0的时候需要重置prev=null，用以结束这一层的遍历；
