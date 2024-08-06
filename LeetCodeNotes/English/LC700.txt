@@ -1,0 +1,11 @@
+【🔍LC700: Search in a Binary Search Tree】
+
+⭐Steps:
+Recursion again:
+1.1) Parameters: The binary tree and the target value.
+1.2) Base Case: If the root is null or the root value is the target value, return the root directly in either case. Both make sense.
+1.3) Single Layer Logic: If the target value is less than the root value, search to the left; otherwise, search to the right. Use a variable result to hold the found node and return its subtree.
+
+⭐Tips:
+What is a Binary Search Tree (BST)?: In a BST, all values in the left subtree are less than the root node, and all values in the right subtree are greater than the root node.
+Utilize the Characteristics of BST: This allows for a simple and direct search method (as mentioned in step 1.3 above).
