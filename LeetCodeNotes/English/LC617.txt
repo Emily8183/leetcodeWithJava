@@ -1,0 +1,11 @@
+【🔍LC617: Merge Two Binary Trees】
+
+⭐Steps:
+How to Traverse Both Trees Simultaneously? Add the values of the matching nodes from both trees. The merged tree will have new values for each node, and returning the root will give us the new binary tree.
+Using Recursion to Solve This Problem:
+2.1) Determine the Parameters: Tree1 and Tree2
+2.2) Base Case: If tree1 is null, return tree2; similarly, if tree2 is null, return tree1
+2.3) Single Layer Logic: We can directly modify tree1 or create a new binary tree (which requires allocating new space). Add the values of corresponding nodes.
+
+⭐Tips:
+Any traversal method can be used for this problem. Starting the merge from the root node aligns well with intuitive logic, so preorder traversal (root-left-right) is a good choice.
