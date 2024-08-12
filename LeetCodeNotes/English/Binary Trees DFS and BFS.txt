@@ -1,0 +1,38 @@
+Binary tree traversal methods are divided into Depth-First Search (DFS) and Breadth-First Search (BFS).
+DFS includes three types:
+Preorder (Root-Left-Right)
+Inorder (Left-Root-Right)
+Postorder (Left-Right-Root)
+
+Both recursive (using stack) and non-recursive (iterative using an explicit stack) methods can be used for traversal.
+【🔍Examples】:
+LC144 (Preorder Traversal)
+LC145 (Postorder Traversal)
+LC94 (Inorder Traversal)
+
+
+LC144, LC145, LC94
+
+Basic Problem-Solving Approach:
+Confirm Parameters and Return Value: Define the parameters our function will take and what it should return.
+Termination Condition: The traversal should terminate when encountering a null node (if cur == null).
+Single Layer Logic: Define what happens at each node level of the tree.
+These three problems can be quickly reviewed. Moving on to LC102, which focuses on BFS.
+【🔍LC102: Binary Tree Level Order Traversal】
+
+LC102
+Key Points:
+Use a queue to keep track of nodes at the current level.
+Record the number of elements at the current level.
+Dequeue elements of the current level and enqueue their child nodes.
+A tricky part of this problem is the need to take a snapshot of the queue's length using an int variable rather than directly using queue.size().
+
+Why?
+Primitive Data Types: int is a primitive data type, which means it is copied by value, not by reference.
+Using queue.size() assigns the current length of the queue to len to ensure that we are only iterating over the nodes at the current level in the inner while loop.
+
+Common Primitive Data Types:
+Integer Types: int, long, short, byte
+Floating Point Types: float, double
+Character Type: char
+Boolean Type: boolean
