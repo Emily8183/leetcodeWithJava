@@ -36,7 +36,7 @@ class Solution {
          }
 
          if (root.left != null) {
-             boolean left = hasPathSum(root.left, targetsum);
+             boolean left = hasPathSum(root.left, targetsum); //将targetsum直接放到递归中，相当于在每一层递归中都有一个新的targetsum变量，因此不需要显式回溯。
              if (left) {      // 找到ture 就返回true
                  return true;
              }

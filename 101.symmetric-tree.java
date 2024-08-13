@@ -26,6 +26,7 @@ class Solution {
         return compare(root.left, root.right);
     }
 
+    //排除空节点，排除对应值不相同，往下递归
     private boolean compare(TreeNode left, TreeNode right) {
         if(left == null && right != null) {
             return false;

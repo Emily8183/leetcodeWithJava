@@ -43,7 +43,7 @@
                 //这里一直在currentDepth + 1，不影响原来currentDepth的值。因此这段代码已经隐藏了回溯的过程
                 
                 
-                // 如果有左孩子，递归调用左孩子，并且深度加1
+                // 如果有右孩子，递归调用左孩子，并且深度加1
                 if (root.right != null) findLeftValue(root.right,currentDepth + 1);
             }
 

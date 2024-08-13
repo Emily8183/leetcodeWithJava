@@ -35,8 +35,10 @@ class Solution {
 
         int leftHeight = 0, rightHeight = 0, numOfNodes = 0;
 
+        //后序遍历
+
         while(left != null ) {
-            left = left.left; 
+            left = left.left; //left 的引用不再指向 current 的直接右子节点，而是指向了原左子节点的左子节点。
             leftHeight++; // 左子树高度
         }
 
