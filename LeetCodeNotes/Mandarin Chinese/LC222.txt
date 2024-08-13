@@ -1,0 +1,13 @@
+222  Complete Binary Tree的节点个数
+.
+步骤:
+1) 什么是Complete Binary Tree？
+a) All full levels except of the last one;
+b) Left-justified, no gap
+.
+2）仍然使用递归操作：在这个Complete Binary Tree中遍历满二叉树，得到高度，通过公式：2^depth - 1，就可以得出节点数的数量；
+.
+3）return sumOfNodes;
+.
+Tips:
+终止遍历的条件：除了当root == null， return 0之外，发现满二叉树时（即leftDepth = rightDepth) 也可终止遍历，直接跳到node的计算公式。

@@ -44,6 +44,7 @@ class Solution {
         while(!queue.isEmpty()) {
 
             int size = queue.size();
+            //通过int快照queue的长度，不可以直接将queue.size()--。在这个过程中，虽然 queue 的大小在动态变化（因为你可能会往里面添加下一层的节点），但是 size 变量不会变，这样可以确保当前层的节点全部被处理完。
 
             List<Integer> currentLevel = new ArrayList<>();
 
