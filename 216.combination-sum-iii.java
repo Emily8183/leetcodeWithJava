@@ -33,13 +33,14 @@ class Solution {
 
         //第二次剪枝
 
-        for (int i= startIndex; i <= 9 -(path.size()-k+1); i++) {
+        for (int i= startIndex; i <= 9 -(k-path.size())+1; i++) {
             path.add(i);
             sum+=i;
             backtracking(k, n, sum, i+1);
             path.removeLast();
             sum-=i;
         }
+        
        
 
     }
