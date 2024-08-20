@@ -11,6 +11,7 @@ class Solution {
     List<List<Integer>> result = new ArrayList<>();
     LinkedList<Integer> path = new LinkedList<>();
     public List<List<Integer>> subsets(int[] nums) {
+        Arrays.sort(nums);
         backtracking(nums,0);
         return result;
         
@@ -25,6 +26,7 @@ class Solution {
             path.add(nums[i]);
             backtracking(nums, i+1);
             path.removeLast();
+        
         }
 
     }
