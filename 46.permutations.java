@@ -28,8 +28,10 @@ class Solution {
           used[i]=true;
           path.add(nums[i]);
           backtracking(nums, used);
-          path.removeLast();
           used[i] = false;
+          path.removeLast();
+        //   最后两行的先后顺序无所谓
+       
 
 
         }
