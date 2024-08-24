@@ -3,6 +3,7 @@
  *
  * [46] Permutations
  */
+// 题目：Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
 
 // @lc code=start
 class Solution {
