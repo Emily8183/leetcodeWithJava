@@ -1,56 +1,52 @@
 package sandbox;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 public class leetcodeTest {
-    private List<List<String>> result = new ArrayList<>();
-    private LinkedList<String> path = new LinkedList<>();
+    private List<List<Integer>> result = new ArrayList<>();
+    private LinkedList<Integer> path = new LinkedList<>();
+    boolean[] used;
     
     public static void main(String[] args) {
         leetcodeTest leetcodeTest = new leetcodeTest();
-        String s = "aab";
+        int[] nums= {1,1,2};
    
-        List<List<String>> subsets = leetcodeTest.partition(s) ;
+        List<List<Integer>> subsets = leetcodeTest.permuteUnique(nums) ;
         System.out.println(subsets);
     }
 
-    public List<List<String>> partition(String s) {
-        backtracking(s,0);
-            return result;
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        used = new boolean[nums.length];
+        Arrays.fill(used,false);
+        Arrays.sort(nums);
+        backtracking(nums, used);
+        return result;
     }
 
-    private void backtracking(String s, int startIndex){
-        if(startIndex>=s.length()){
+    private void backtracking(int[] nums, boolean[] used){
+        //used需要作为参数加进来
+
+        if(path.size()== nums.length){
             result.add(new ArrayList<>(path));
-            return;
         }
 
-        for (int i = startIndex; i < s.length(); i++){
-            if(isPalindrome(s,startIndex,i)){
-                String str = s.substring(startIndex,i+1);
-                path.add(str);
-            }else{
-                continue;
-            }
+        for(int i=0; i <nums.length; i++){
+            if(i>0 && nums[i]==nums[i-1] && !used[i-1]) continue;
 
-            backtracking(s,i+1);
+            if(!used[i]){
+
+            used[i]= true;
+            path.add(nums[i]);
+            backtracking(nums, used);
+            used[i] = false;
             path.removeLast();
-        }
-    }
-
-        private boolean isPalindrome(String s, int start, int end) {
-            while(start<end){
-                if(s.charAt(start)!=s.charAt(end)){
-                    return false;
-                } 
-                start++;
-                end--;
             }
 
-            return true;
-                       
+
         }
+}
 }
     
 
