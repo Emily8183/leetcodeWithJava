@@ -33,21 +33,24 @@ Set the initial value of the Result to the maximum (Integer.MAX_VALUE) so that i
 // @lc code=start
 class Solution {
     public int minSubArrayLen(int target, int[] nums) {
-        int left = 0;
-        int sum = 0;
-        int result = Integer.MAX_VALUE;
+       //设定left和right指针，并把minLength定义为最大初始值
+       int left = 0;
+       int minLength = Integer.MAX_VALUE;
+       int sum = 0;
 
-        for ( int right = 0; right < nums.length; right++) {
-            sum += nums[right];
+       //将minLength的值与每一次找到的窗口长度进行比较，取较小值
+       for(int right=0; right < nums.length; right++) {
+           sum += nums[right];
 
-            while(sum >= target) {
-                result = Math.min(result, right-left+1);
-                sum -= nums[left];
-                left++;
-
-            }
+           while(sum >= target) {
+            minLength = Math.min(minLength, right-left+1); //重要：先记录当下的minLength
+            sum-=nums[left]; //再不断调整sum与left
+            left++;
+           }
         }
-        return result == Integer.MAX_VALUE? 0 : result;
+
+       //最后判断minLength是否等于Integer.MAX_VALUE，如果等于，说明没有找到满足条件的子数组，返回0，否则返回minLength
+       return minLength== Integer.MAX_VALUE? 0:minLength;
     }
 }
 
