@@ -10,22 +10,24 @@ class Solution {
 
         int[] count = new int[26];
 
-        for (int i=0; i<magazine.length(); i++) {
-            count [magazine.charAt(i)-'a']++;
+        if (ransomNote.length() > magazine.length()) return false;
+
+        for (int i=0; i < magazine.length();i++) {
+            count[magazine.charAt(i)-'a']++;
         }
 
-        for (int i=0; i<ransomNote.length(); i++) {
-            count[ransomNote.charAt(i)-'a']--;
-        }
+        for(int j=0; j<ransomNote.length();j++) {
+            count[ransomNote.charAt(j)-'a']--;
 
-        for (int i=-0; i<count.length;i++) {
-            if (count[i]<0) {
-                return false;
-            }
-        }
+            // if(count[j]<0) return false;
+            if(count[ransomNote.charAt(j)-'a']<0) return false;
 
+
+        }
 
         return true;
+
+
 
     }
 }

@@ -11,31 +11,37 @@ public class leetcodeTest {
 
     public static void main(String[] args) {
         leetcodeTest leetcodeTest = new leetcodeTest();
-        int [] nums = {-1,0,3,5,9,12};
-        int target = 0;
-        int result = leetcodeTest.search(nums, target);
+        String s = "abc";
+        String t = "bcaaa";
+      
+        boolean result = leetcodeTest.isAnagram(s, t);
         System.out.println(result);
     }
-    public int search(int[] nums, int target) {
-        //左闭右开
-        int left =0;
-        int right = nums.length;
+    public boolean isAnagram(String s, String t) {
 
-        while(left < right)
+        int[] count = new int[26];
 
-        {
-           int mid = left + (right-left)/2; 
+        for (int i=0; i< s.length();i++) {
+            // int num = s.charAt(i)-'a';
+            // System.out.println(num); 
+            // 打印结果是0，1，2
 
-           if(nums[mid] == target) 
-           {
-            return mid;
-           } else if(nums[mid] < target){
-            left = mid + 1;
-           } else {right = mid;}
-
+            count[s.charAt(i) -'a'] ++;
         }
 
-        return -1;
+        for (int i=0; i< t.length();i++) {
+            count[t.charAt(i) -'a']--;
+        }
+
+        for (int i=0; i < count.length; i++) {
+            if (count[i] != 0) {
+            return false;
+            }
+        }
+        //还有另一种写法，for(int count:record)
+
+        return true;
+        
     }
 }
     
