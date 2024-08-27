@@ -15,26 +15,29 @@
 class Solution {
     public int[] sortedSquares(int[] nums) {
         int[] result = new int[nums.length];
+        int left =0;
+        int right = nums.length-1;
+        int fast = nums.length-1;
 
-        int left = 0, right = nums.length -1;
+        while(left<=right) {
+            int leftNum = nums[left]*nums[left];
+            int rightNum = nums[right]*nums[right];
 
-        int position = nums.length-1;
-
-       while (left <=right) {
-            int leftSquare = nums[left] * nums[left];
-            int rightSquare = nums[right] * nums[right];
-
-            if ( leftSquare < rightSquare) {
-                result[position--] = rightSquare;
+            if(leftNum<rightNum){
+                result[fast]=rightNum;
                 right--;
-                
+                fast--;
+             
             } else {
-                result[position--] = leftSquare;
+                result[fast]=leftNum;
                 left++;
-            } 
+                fast--;
+                
+            }
+           
         }
+
         return result;
-        
     }
 }
 // @lc code=end

@@ -3,50 +3,46 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+
+import javax.swing.tree.TreeNode;
 
 public class leetcodeTest {
-    private List<List<Integer>> result = new ArrayList<>();
-    private LinkedList<Integer> path = new LinkedList<>();
-    boolean[] used;
-    
+
     public static void main(String[] args) {
         leetcodeTest leetcodeTest = new leetcodeTest();
-        int[] nums= {1,1,2};
-   
-        List<List<Integer>> subsets = leetcodeTest.permuteUnique(nums) ;
-        System.out.println(subsets);
+        String s = "abc";
+        String t = "bcaaa";
+      
+        boolean result = leetcodeTest.isAnagram(s, t);
+        System.out.println(result);
     }
+    public boolean isAnagram(String s, String t) {
 
-    public List<List<Integer>> permuteUnique(int[] nums) {
-        used = new boolean[nums.length];
-        Arrays.fill(used,false);
-        Arrays.sort(nums);
-        backtracking(nums, used);
-        return result;
-    }
+        int[] count = new int[26];
 
-    private void backtracking(int[] nums, boolean[] used){
-        //used需要作为参数加进来
+        for (int i=0; i< s.length();i++) {
+            // int num = s.charAt(i)-'a';
+            // System.out.println(num); 
+            // 打印结果是0，1，2
 
-        if(path.size()== nums.length){
-            result.add(new ArrayList<>(path));
+            count[s.charAt(i) -'a'] ++;
         }
 
-        for(int i=0; i <nums.length; i++){
-            if(i>0 && nums[i]==nums[i-1] && !used[i-1]) continue;
+        for (int i=0; i< t.length();i++) {
+            count[t.charAt(i) -'a']--;
+        }
 
-            if(!used[i]){
-
-            used[i]= true;
-            path.add(nums[i]);
-            backtracking(nums, used);
-            used[i] = false;
-            path.removeLast();
+        for (int i=0; i < count.length; i++) {
+            if (count[i] != 0) {
+            return false;
             }
-
-
         }
-}
+        //还有另一种写法，for(int count:record)
+
+        return true;
+        
+    }
 }
     
 

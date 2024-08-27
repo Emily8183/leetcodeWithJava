@@ -19,7 +19,6 @@ class Solution {
     }
 
     private void backtracking(int[] nums) {
-        //used需要作为参数加进来
 
         if(path.size()== nums.length){
             result.add(new ArrayList<>(path));
@@ -35,7 +34,6 @@ class Solution {
             used[i] = false;
             path.removeLast();
             }
-
 
         }
 
