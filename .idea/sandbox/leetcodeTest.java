@@ -11,32 +11,29 @@ public class leetcodeTest {
 
     public static void main(String[] args) {
         leetcodeTest leetcodeTest = new leetcodeTest();
-        char[] s ={'h', 'e', 'l', 'l', 'o'}; 
+        String s = "  the sky     is blue";   
+        char[] sArray = s.toCharArray();
       
-        String result = leetcodeTest.reverseString(s);
+        char[] result = leetcodeTest.removeExtraSpaces(sArray);
         System.out.println(result);
     }
-    public String reverseString(char[] s) {
-
-        reverse (s, 0, s.length-1);
-        return new String(s);
-        
-    }
-
-    private void reverse(char[] s, int left, int right) {
-
-        if(left> right) return;
-      
-        while(left<=right){
-            char temp = s[right];
-            s[right] = s[left];
-
-            s[left]= temp;
-
-            right--;
-            left++;
+    public char[] removeExtraSpaces(char[] chars) {
+        int slow = 0;
+        for (int fast = 0; fast < chars.length; fast++) {
+            //先用 fast 移除所有空格
+            if (chars[fast] != ' ') {
+                //再用 slow 加空格。 除第一个单词外，单词末尾要加空格
+                if (slow != 0)
+                    chars[slow++] = ' ';
+                //fast 遇到空格或遍历到字符串末尾，就证明遍历完一个单词了
+                while (fast < chars.length && chars[fast] != ' ')
+                    chars[slow++] = chars[fast++];
+            }
         }
-    
+        //相当于 c++ 里的 resize()
+        char[] newChars = new char[slow];
+        System.arraycopy(chars, 0, newChars, 0, slow); 
+        return newChars;
     }
 
 }
