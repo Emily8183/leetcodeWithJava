@@ -17,7 +17,7 @@ class Solution {
       
         if(left>=right) return; //edge case
 
-        while(left<right){
+        while(left<right){ //这里需要走while loop
             char temp = s[right];
 
             s[right]= s[left];
