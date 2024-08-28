@@ -19,18 +19,25 @@ Tips:
 
 // @lc code=start
 class Solution {
-    public int removeElement(int[] nums, int val) {
-        int slow = 0;
+        public int removeElement(int[] nums, int val) {
+            int slow = 0;
 
-        for (int fast = 0; fast < nums.length; fast++) {
-            if(nums[fast] != val) {
-                nums[slow] = nums[fast];
+            for(int i=0; i < nums.length; i++) {
+                //i可以用fast代替,看起来更清楚
+
+                if(nums[i] != val) {
+
+                nums[slow] = nums[i];
                 slow++;
+
+                }
+
             }
+
+            return slow;
+
+
         }
-        return slow;
-        
-    }
 }
 // @lc code=end
 
