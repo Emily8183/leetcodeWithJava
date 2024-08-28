@@ -11,38 +11,34 @@ public class leetcodeTest {
 
     public static void main(String[] args) {
         leetcodeTest leetcodeTest = new leetcodeTest();
-        String s = "abc";
-        String t = "bcaaa";
+        char[] s ={'h', 'e', 'l', 'l', 'o'}; 
       
-        boolean result = leetcodeTest.isAnagram(s, t);
+        String result = leetcodeTest.reverseString(s);
         System.out.println(result);
     }
-    public boolean isAnagram(String s, String t) {
+    public String reverseString(char[] s) {
 
-        int[] count = new int[26];
-
-        for (int i=0; i< s.length();i++) {
-            // int num = s.charAt(i)-'a';
-            // System.out.println(num); 
-            // 打印结果是0，1，2
-
-            count[s.charAt(i) -'a'] ++;
-        }
-
-        for (int i=0; i< t.length();i++) {
-            count[t.charAt(i) -'a']--;
-        }
-
-        for (int i=0; i < count.length; i++) {
-            if (count[i] != 0) {
-            return false;
-            }
-        }
-        //还有另一种写法，for(int count:record)
-
-        return true;
+        reverse (s, 0, s.length-1);
+        return new String(s);
         
     }
+
+    private void reverse(char[] s, int left, int right) {
+
+        if(left> right) return;
+      
+        while(left<=right){
+            char temp = s[right];
+            s[right] = s[left];
+
+            s[left]= temp;
+
+            right--;
+            left++;
+        }
+    
+    }
+
 }
     
 
