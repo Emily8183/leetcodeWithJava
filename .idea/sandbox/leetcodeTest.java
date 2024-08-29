@@ -11,7 +11,7 @@ public class leetcodeTest {
 
     public static void main(String[] args) {
         leetcodeTest leetcodeTest = new leetcodeTest();
-        String s = "  the sky     is blue";   
+        String s = "  the sky s";   
         char[] sArray = s.toCharArray();
       
         char[] result = leetcodeTest.removeExtraSpaces(sArray);
@@ -24,9 +24,9 @@ public class leetcodeTest {
             if (chars[fast] != ' ') {
                 //再用 slow 加空格。 除第一个单词外，单词末尾要加空格
                 if (slow != 0)
-                    chars[slow++] = ' ';
+                    chars[slow++] = ' '; 
                 //fast 遇到空格或遍历到字符串末尾，就证明遍历完一个单词了
-                while (fast < chars.length && chars[fast] != ' ')
+                while (fast < chars.length)
                     chars[slow++] = chars[fast++];
             }
         }
