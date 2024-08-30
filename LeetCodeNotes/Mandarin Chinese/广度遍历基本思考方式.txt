@@ -1,0 +1,30 @@
+广度遍历（也叫层序遍历）主要依靠队列来实现，队列是先进先出，符合按层遍历的逻辑。
+.
+Btw深度遍历用的是recursion，符合栈先进后出的逻辑。
+=======
+.
+基本思路：
+.
+1）先要新建一个queue，往往还需要一个ArrayList来存放result；
+.
+Queue<TreeNode> queue = new LinkedList<>();
+List<Integer> result = new ArrayList<>()；
+.
+注意点：用队列而不是栈，队列是先进先出。
+.
+2）把这棵树的首层(即root)放到队列中
+注意点：Java的话，这里一般用的是queue.offer()而不是queue.add()。
+.
+queue.offer() 是 Java 中 Queue 接口的一个方法，用于将指定元素插入到队列中。与 queue.add() 类似，但在无法插入元素时不会抛出异常，而是返回 false。这是 offer() 方法的一个显著特点，它在插入失败时表现得更加温和。
+.
+3）while loop开始遍历：
+注意点：
+赶紧地给queue.size()做一个快照：int size = queue.size()
+因为遍历过程中queue会出现变化，例如：弹出一个元素，后面随即增添所弹出元素的左右子叶。
+.
+如果没有快照，queue.size()无法固定。
+代码方面，java中经常用到的是Integer.MIN_VALUE 或者Integer.MAX_VALUE
+.
+4）将所求值加到result, return
+.
+基础题是LC10
