@@ -6,18 +6,40 @@
 因为这题不在leetcode上，暂时跳过
 */
 
-import java.util.Scanner;
-
 public class KM55 {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        int num = Integer.parseInt(input.nextLine());
-        String s = input.nextLine();
+       KM55 km55=new KM55();
 
+       String s = "abcdefg";
+       char[] charS=s.toCharArray();
+       int k = 2;
 
+       char[] convertString = km55.convert(charS,0,charS.length-1);
+       //convert the entire string, from "abcdefg" to "gfedcba"
 
-        
+       char[] convertKchars = km55.convert(convertString, 0, k-1);
+       //convert the string to "fgedcba"
+
+       char[] convertRestchars = km55.convert(convertKchars, k, convertKchars.length-1);
+       //convert the string to "fgabcde"
+
+       System.out.println(convertRestchars); 
     }
+
+    private char[] convert(char[] charsSample, int start, int end) {
+
+      while(start<end) {
+        char temp = charsSample[end];
+        charsSample[end] = charsSample[start];
+        charsSample[start] = temp;
+        start++;
+        end--;
+      }
+
+      return charsSample;
+
+    }
+
 
     
 }
