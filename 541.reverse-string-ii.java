@@ -25,9 +25,9 @@ class Solution {
     }
 
     private void reverse(char[] arr, int start, int end) {
-        if(start >= end) return; 
+        // if(start >= end) return; //这里用的是while loop，不是递归写法，因此不需要这个if终止条件
 
-        while(start < end) { //二刷，递归中这里需要一个while loop
+        while(start < end) { //二刷，通过while loop来设置终止条件。同时可以用递归做这题，方法看下面
             char temp = arr[end];
             arr[end] = arr[start];
             arr[start] = temp;
