@@ -59,8 +59,22 @@ class Solution {
         // return -1; //理论上，这个题目假设输入一定有多数元素，所以这里不会执行到
 
 
-        
+        //解法3：投票法
+        //从第一个元素开始从零计算次数，出现第二个不同数字时，逐步递减次数直至归零，再正向计算。最终剩下的数则为众数
+        int count =0;
+        Integer candidate = null;
+
+        for(int num: nums) {
+            if(count == 0) {
+                candidate = num;
+            }
+
+            count += (num==candidate) ? 1: -1;
         }
+
+        return candidate;
+    
+    }
     
 }
 
