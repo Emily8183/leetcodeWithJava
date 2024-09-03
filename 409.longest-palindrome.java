@@ -28,6 +28,7 @@ class Solution {
         }
 
         if(hashset.size() >0) result+=1;
+        //可以改成!hashset.isEmpty()
 
     return result;
     }
