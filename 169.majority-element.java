@@ -61,12 +61,15 @@ class Solution {
 
         //解法3：投票法
         //从第一个元素开始从零计算次数，出现第二个不同数字时，逐步递减次数直至归零，再正向计算。最终剩下的数则为众数
+        
         int count =0;
         Integer candidate = null;
+        //初始为null时用对象类型（reference type),而不是基本数据类型（primitive type)
 
         for(int num: nums) {
             if(count == 0) {
                 candidate = num;
+                //如果 count 变为 0，则表示当前候选元素已经不可能是多数元素（因为它在数组中遇到的反对票与支持票一样多），此时会更新 candidate 为当前的 num，并重置 count 为 1。
             }
 
             count += (num==candidate) ? 1: -1;
