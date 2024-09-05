@@ -7,27 +7,30 @@
 // @lc code=start
 class Solution {
     public int longestPalindrome(String s) {
-        //use hashset
 
-        HashSet<String> set = new HashSet<String>();
+        Set<Character> hashset = new HashSet<>();
+        //处理的是字符，因此是Character而不是String
+
         char[] arr = s.toCharArray();
 
         int result = 0;
 
-        for (char c : arr) {
-            if() {
-                //find c in set
-            arr.remove(c);
-            result +=2;
+        for(char letter: arr){
+
+        
+            if(!hashset.contains(letter)){
+                hashset.add(letter);
+           
             } else{
-                arr.add(c);
+                hashset.remove(letter);
+                result+=2;
             }
         }
 
+        if(hashset.size() >0) result+=1;
+        //可以改成!hashset.isEmpty()
 
-        
-        
-        
+    return result;
     }
 }
 // @lc code=end
