@@ -11,26 +11,34 @@ public class leetcodeTest {
 
     public static void main(String[] args) {
         leetcodeTest leetcodeTest = new leetcodeTest();
-        int[] nums = {4,1,4,4,3,3};   
+        int[] nums = {0,1,0,3,12}; 
        
-        Integer candidate = leetcodeTest.search(nums);
-        System.out.println(candidate);
+        leetcodeTest.moveZeroes(nums);
+
+        // for(int num:nums) {
+        //     System.out.println(num);
+        // }
+
+        System.out.println(Arrays.toString(nums)); 
+   
     }
-    public Integer search(int[] nums) {
-        int count =0;
-        Integer candidate = null;
+    public void moveZeroes(int[] nums) {
 
-        for(int num: nums) {
-            if(count == 0) {
-                candidate = num;
-            }
+        int j=0;
 
-            count += (num==candidate) ? 1: -1;
+        for(int i=0;i<nums.length;i++){
+            // for(int j=0;j<nums.length;j++){
+                if(nums[i]!=0) {
+                    nums[j++]=nums[i];
+                } 
         }
 
-        return candidate;
-    }
+        for(int i= j;i<nums.length; i++){
+            nums[i]=0;
+        }  
 
+        
+    }
 }
     
 
