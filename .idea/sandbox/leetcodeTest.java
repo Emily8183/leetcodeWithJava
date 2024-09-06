@@ -13,26 +13,37 @@ public class leetcodeTest {
         leetcodeTest leetcodeTest = new leetcodeTest();
         int[] nums = {2,3,1,1,4}; 
        
-        boolean result = leetcodeTest.canJump(nums);
+        int result = leetcodeTest.jump(nums);
 
         System.out.println(result); 
    
     }
-    public boolean canJump(int[] nums) {
+    public int jump(int[] nums) {
 
-        if (nums.length == 1) return true;
+        int n=nums.length;
+
+        int j = 0;//farthest
 
         int coverage =0;
 
-        for(int i=0; i <= coverage; i++) { 
-            coverage = Math.max(coverage, nums[i]+i);
+        int jump = 0;
 
-            if(coverage>=nums.length-1) return true;
+        if(n==1) return 0;
 
+        for (int i=0; i<=n-1; i++) {
+            j = Math.max(j, nums[i]+i);
+
+            if(i== coverage) {
+                jump++;
+                coverage = j;
+            }
+
+            if(coverage >n) break;
+            
+        
         }
 
-        return false;
-
+        return jump;
 
         
     }
