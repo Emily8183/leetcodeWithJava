@@ -22,30 +22,26 @@ public class leetcodeTest {
 
         int n=nums.length;
 
-        int j = 0;//farthest
+        int farthestPoint = 0; //未来时
 
-        int coverage =0;
+        int currentCoverage =0; //现在时
 
         int jump = 0;
 
         if(n==1) return 0;
 
-        for (int i=0; i<=n-1; i++) {
-            j = Math.max(j, nums[i]+i);
+        for (int i=0; i<=farthestPoint && i<n-1; i++) {
 
-            if(i== coverage) {
+            farthestPoint = Math.max(farthestPoint, nums[i]+i);
+
+            if(i == currentCoverage) { // 当下标等于当前覆盖最远距离的下标
+                currentCoverage=farthestPoint; 
                 jump++;
-                coverage = j;
             }
-
-            if(coverage >n) break;
-            
         
         }
 
         return jump;
-
-        
     }
 }
     
