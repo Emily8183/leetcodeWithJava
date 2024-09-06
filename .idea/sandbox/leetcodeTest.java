@@ -11,31 +11,28 @@ public class leetcodeTest {
 
     public static void main(String[] args) {
         leetcodeTest leetcodeTest = new leetcodeTest();
-        int[] nums = {0,1,0,3,12}; 
+        int[] nums = {2,3,1,1,4}; 
        
-        leetcodeTest.moveZeroes(nums);
+        boolean result = leetcodeTest.canJump(nums);
 
-        // for(int num:nums) {
-        //     System.out.println(num);
-        // }
-
-        System.out.println(Arrays.toString(nums)); 
+        System.out.println(result); 
    
     }
-    public void moveZeroes(int[] nums) {
+    public boolean canJump(int[] nums) {
 
-        int j=0;
+        if (nums.length == 1) return true;
 
-        for(int i=0;i<nums.length;i++){
-            // for(int j=0;j<nums.length;j++){
-                if(nums[i]!=0) {
-                    nums[j++]=nums[i];
-                } 
+        int coverage =0;
+
+        for(int i=0; i <= coverage; i++) { 
+            coverage = Math.max(coverage, nums[i]+i);
+
+            if(coverage>=nums.length-1) return true;
+
         }
 
-        for(int i= j;i<nums.length; i++){
-            nums[i]=0;
-        }  
+        return false;
+
 
         
     }
