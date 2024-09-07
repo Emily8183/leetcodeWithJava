@@ -11,37 +11,35 @@ public class leetcodeTest {
 
     public static void main(String[] args) {
         leetcodeTest leetcodeTest = new leetcodeTest();
-        int[] nums = {2,3,1,1,4}; 
-       
-        int result = leetcodeTest.jump(nums);
+        int[] nums = {1,2,3,4,5,6,7}; 
 
-        System.out.println(result); 
+        leetcodeTest.reverseArray(nums, 3);
+
+        System.out.println(Arrays.toString(nums)); 
    
     }
-    public int jump(int[] nums) {
 
-        int n=nums.length;
+    private void reverseArray(int[] nums, int k) {
 
-        int farthestPoint = 0; //未来时
-
-        int currentCoverage =0; //现在时
-
-        int jump = 0;
-
-        if(n==1) return 0;
-
-        for (int i=0; i<=farthestPoint && i<n-1; i++) {
-
-            farthestPoint = Math.max(farthestPoint, nums[i]+i);
-
-            if(i == currentCoverage) { // 当下标等于当前覆盖最远距离的下标
-                currentCoverage=farthestPoint; 
-                jump++;
-            }
+        k = k % nums.length; 
         
+        reverse(nums, 0, nums.length-1);
+        reverse(nums, 0, k);
+        reverse(nums, k+1, nums.length-1);
+    }
+
+    private void reverse (int[] nums, int start, int end) {
+
+        if(start >= end) return;
+
+        while (start < end) {
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
         }
 
-        return jump;
     }
 }
     
