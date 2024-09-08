@@ -8,8 +8,7 @@
 class Solution {
     public int[][] insert(int[][] intervals, int[] newInterval) {
         List<int[]> result = new ArrayList<>();
-
-        
+ 
         for ( int i = 0; i < intervals.length; i++) {
 
             //如果newInterval的左边界大于intervals蕞后一个区间的右区间,result内先依次加入intervals的各个区间
@@ -32,7 +31,7 @@ class Solution {
             }
         }
 
-        result.add(newInterval); //所以到这一步,interval更新后,加到result
+        result.add(newInterval); //所以到这一步,interval更新后,加到result; 另一种情况是空区间
 
         return result.toArray(new int[result.size()][]); //蕞后需要将ArrayList转为二维数组
         
