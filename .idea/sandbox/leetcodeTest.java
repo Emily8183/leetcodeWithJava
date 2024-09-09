@@ -11,36 +11,68 @@ public class leetcodeTest {
 
     public static void main(String[] args) {
         leetcodeTest leetcodeTest = new leetcodeTest();
-        int[] nums = {1,2,3,4,5,6,7}; 
+        int[][] intervals = {{1,3},{2,6},{8,10},{15,18}}; 
 
-        leetcodeTest.reverseArray(nums, 3);
+        int[][] mergedIntervals = leetcodeTest.merge(intervals);
 
-        System.out.println(Arrays.toString(nums)); 
-   
-    }
-
-    private void reverseArray(int[] nums, int k) {
-
-        k = k % nums.length; 
-        
-        reverse(nums, 0, nums.length-1);
-        reverse(nums, 0, k);
-        reverse(nums, k+1, nums.length-1);
-    }
-
-    private void reverse (int[] nums, int start, int end) {
-
-        if(start >= end) return;
-
-        while (start < end) {
-            int temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
-            start++;
-            end--;
+        // 打印二维数组
+        for (int[] interval : mergedIntervals) {
+            System.out.println("[" + interval[0] + "," + interval[1] + "]"); 
         }
 
     }
+
+    private int[][] merge(int[][] intervals) {
+
+       // Sort the intervals based on the start time
+    //    Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+
+    //    List<int[]> merged = new ArrayList<>();
+
+    //    for (int i = 0; i < intervals.length; i++) {
+    //        // If the list of merged intervals is empty or the current interval does not overlap with the previous, add it.
+    //        if (merged.isEmpty() || merged.get(merged.size() - 1)[1] < intervals[i][0]) {
+    //            merged.add(intervals[i]);
+    //        } else {
+    //            // There is overlap, so merge the current and previous intervals.
+    //            merged.get(merged.size() - 1)[1] = Math.max(merged.get(merged.size() - 1)[1], intervals[i][1]);
+    //        }
+    //    }
+
+    //    return merged.toArray(new int[merged.size()][]);
+   
+
+        if(intervals.length == 0) return new int[0][0];
+
+        Arrays.sort(intervals,(a,b) -> Integer.compare(a[0],b[0]));
+
+        ArrayList<int[]> result = new ArrayList<>();
+
+        int[] currentInterval = intervals[0];
+
+        result.add(currentInterval);
+
+
+        for (int i=1; i < intervals.length; i++) {
+
+            int[] nextInterval = intervals[i];
+
+            if (currentInterval[1] >= nextInterval[0]) {
+
+                currentInterval[1] = Math.max(currentInterval[1], nextInterval[1]);
+            } else {
+                currentInterval = nextInterval;
+                result.add(currentInterval);
+          }
+
+        }
+
+   
+
+        return result.toArray(new int[result.size()][]);
+
 }
+}
+
     
 
