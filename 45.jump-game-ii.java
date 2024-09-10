@@ -39,7 +39,7 @@ class Solution {
         
         //解法2：
         for (int i = 0; i <= farthestPoint && i < n-1; i++) { 
-            //这里是n-1,蕞后一个数没有意义遍历，因为倒数第二个数至少可以走一个单位
+            //这里是n-1,蕞后一个数没有遍历的意义，因为倒数第二个数至少可以走一个单位
 
             farthestPoint = Math.max(farthestPoint, nums[i]+i);
 
