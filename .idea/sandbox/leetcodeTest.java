@@ -11,65 +11,60 @@ public class leetcodeTest {
 
     public static void main(String[] args) {
         leetcodeTest leetcodeTest = new leetcodeTest();
-        int[][] intervals = {{1,3},{2,6},{8,10},{15,18}}; 
+        int[] nums = {2,2,2,2,2}; 
 
-        int[][] mergedIntervals = leetcodeTest.merge(intervals);
+        List<List<Integer>> result = leetcodeTest.foursum(nums, 8);
 
-        // 打印二维数组
-        for (int[] interval : mergedIntervals) {
-            System.out.println("[" + interval[0] + "," + interval[1] + "]"); 
-        }
-
+        System.out.println(result); 
+    
     }
 
-    private int[][] merge(int[][] intervals) {
+    private List<List<Integer>> foursum(int[] nums, int target) {
 
-       // Sort the intervals based on the start time
-    //    Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        List<List<Integer>> res = new ArrayList<>();
 
-    //    List<int[]> merged = new ArrayList<>();
+        Arrays.sort(nums);
 
-    //    for (int i = 0; i < intervals.length; i++) {
-    //        // If the list of merged intervals is empty or the current interval does not overlap with the previous, add it.
-    //        if (merged.isEmpty() || merged.get(merged.size() - 1)[1] < intervals[i][0]) {
-    //            merged.add(intervals[i]);
-    //        } else {
-    //            // There is overlap, so merge the current and previous intervals.
-    //            merged.get(merged.size() - 1)[1] = Math.max(merged.get(merged.size() - 1)[1], intervals[i][1]);
-    //        }
-    //    }
+        for (int i = 0; i < nums.length; i++) {
 
-    //    return merged.toArray(new int[merged.size()][]);
-   
+            //当nums[i]是正数，且大于target，不需要继续向后遍历
+            if (nums[i] >= 0 && nums[i] > target) break;
 
-        if(intervals.length == 0) return new int[0][0];
+            //去重, 避免重新处理同样的i元素
+            if (i > 0 && nums[i-1] == nums[i]) continue;
 
-        Arrays.sort(intervals,(a,b) -> Integer.compare(a[0],b[0]));
+            for (int j = i+1; j < nums.length; j++) {
 
-        ArrayList<int[]> result = new ArrayList<>();
+                //当nums[i]+nums[j]是正数，且大于target，不需要继续向后遍历
+                 if (nums[i]+nums[j] >= 0 && nums[i]+nums[j] > target) break;
 
-        int[] currentInterval = intervals[0];
+                //对j进行去重
+                if (j > i+1 && nums[j-1] == nums[j]) continue;
 
-        result.add(currentInterval);
+                //双指针
+                int left = j+1;
+                int right = nums.length-1;
 
+                while (left < right) {
+                    int sum = nums[i]+nums[j]+nums[left]+nums[right];
 
-        for (int i=1; i < intervals.length; i++) {
+                    if (sum > target) {
+                        right--;
+                    } else if (sum < target) {
+                        left++;
+                    } else {
+                         res.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
 
-            int[] nextInterval = intervals[i];
+                        while (left < right && nums[left] == nums[left+1]) left++;//left去重
+                        while (right > left && nums[right-1] == nums[right]) right--; //right去重
 
-            if (currentInterval[1] >= nextInterval[0]) {
-
-                currentInterval[1] = Math.max(currentInterval[1], nextInterval[1]);
-            } else {
-                currentInterval = nextInterval;
-                result.add(currentInterval);
-          }
-
+                         left++;
+                         right--;
+                    }
+                }
+            }
         }
-
-   
-
-        return result.toArray(new int[result.size()][]);
+        return res;
 
 }
 }
