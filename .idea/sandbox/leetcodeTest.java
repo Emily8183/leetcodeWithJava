@@ -13,44 +13,38 @@ public class leetcodeTest {
 
     public static void main(String[] args) {
         leetcodeTest leetcodeTest = new leetcodeTest();
-        String str = "pwwkew"; 
+        int[] nums = {0,0,2,1,1,2}; 
 
-        int result = leetcodeTest.lengthOfLongestSubstring(str);
+        leetcodeTest.sortColors(nums);
 
-        System.out.println(result); 
+        System.out.println(nums); 
     
     }
 
-    private int lengthOfLongestSubstring(String s) {
+    private void sortColors(int[] nums) {
 
-        char[] arr = s.toCharArray();
-
-        Set<Character> hashset = new HashSet<>();
-
-        int maxLength = Integer.MIN_VALUE;
-
-        for (int i = 0; i < arr.length; i++) {
-
-            for ( char a : arr ) {
-                hashset.add(a);
-
-                if (hashset.contains(a)) {        
-                    break;
-                }
-            }
+        int left = 0;
+        int right = nums.length-1;
 
 
+        for ( int i = 0; i < nums.length; i++) {
 
-            hashset.add(arr[i]);
+            while( left < right) {
 
-            maxLength = Math.max(hashset.size(),maxLength);
-
-
+                if (nums[i] == 2) {
+                     nums[i] = nums[right];
+                     nums[right] = 2;
+                     right--;
+                 } else if (nums[i] == 0) {
+                     nums[i] = nums[left];
+                     nums[left] = 0;
+                     left++;
+                 }
+             }
         }
+        
+    }
 
-        return maxLength;
-
-}
 }
 
     
