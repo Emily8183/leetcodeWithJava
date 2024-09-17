@@ -56,6 +56,15 @@ class Solution {
                 result.add(i-windowSize+1);
             }
 
+            //解法二：制造一个计数器，记录匹配了多少个字符. instead of 用hashmap, 创建两个26字母的数组进行比较
+
+            // private boolean isAnagram (int[] countS, int[] countP) {
+            //     if (countS[i] != countP[i]) {
+            //         return false;
+            //     }
+            //     return true;
+            // }
+
         }
 
         return result;        
