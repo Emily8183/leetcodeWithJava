@@ -8,7 +8,7 @@
 // @lc code=start
 class Solution {
     public String removeDuplicates(String s) {
-        ArrayDeque <Character> deque = new ArrayDeque<>();
+        Deque <Character> deque = new ArrayDeque<>();
         //ArrayDeque会比LinkedList在除了删除元素这一点外会快一点
         //参考：https://stackoverflow.com/questions/6163166/why-is-arraydeque-better-than-linkedlist
 
@@ -24,6 +24,7 @@ class Solution {
             };
         }
 
+        //从栈到string
         StringBuilder sb = new StringBuilder();
 
         while (!deque.isEmpty()) {

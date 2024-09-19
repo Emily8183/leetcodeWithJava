@@ -8,7 +8,7 @@
 class Solution {
     public boolean isValid(String s) {
 
-        Deque<Character> stack = new LinkedList<>();
+        Deque<Character> stack = new LinkedList<>(); //双端队列
 
         if (s.length() %2 !=0){
             return false;
