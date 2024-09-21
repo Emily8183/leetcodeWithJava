@@ -27,7 +27,7 @@ class Solution {
 
         //比较大小
         while (list1 != null && list2 != null) {
-            if (list1.val < list2.val) {
+            if (list1.val < list2.val) { //比较当前链表节点的值
                 cur.next = list1;
                 list1 = list1.next;
             } else {
@@ -38,7 +38,7 @@ class Solution {
             cur = cur.next;
         } 
 
-        cur.next = list1 != null? list1: list2;
+        cur.next = list1 != null? list1: list2; //处理剩余链表
 
         return dummy.next;
 
