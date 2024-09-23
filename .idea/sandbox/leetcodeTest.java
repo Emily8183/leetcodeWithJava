@@ -13,36 +13,30 @@ public class leetcodeTest {
 
     public static void main(String[] args) {
         leetcodeTest leetcodeTest = new leetcodeTest();
-        int[] nums = {0,0,2,1,1,2}; 
 
-        leetcodeTest.sortColors(nums);
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = new ListNode(5);
 
-        System.out.println(nums); 
+        ListNode slow = leetcodeTest.middleNode(head);
+
+        System.out.println(slow); 
     
     }
 
-    private void sortColors(int[] nums) {
+    public ListNode middleNode(ListNode head) {
 
-        int left = 0;
-        int right = nums.length-1;
+        ListNode slow = head;
+        ListNode fast = head;
 
+        while ( fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        } 
 
-        for ( int i = 0; i < nums.length; i++) {
-
-            while( left < right) {
-
-                if (nums[i] == 2) {
-                     nums[i] = nums[right];
-                     nums[right] = 2;
-                     right--;
-                 } else if (nums[i] == 0) {
-                     nums[i] = nums[left];
-                     nums[left] = 0;
-                     left++;
-                 }
-             }
-        }
-        
+        return slow;  
     }
 
 }
