@@ -25,7 +25,6 @@ class Solution {
         }
 
         for(int i = startIndex; i<candidates.length; i++) {
-            // if(sum+candidates[i]>target) break;
 
             path.add(candidates[i]);
             sum+= candidates[i];

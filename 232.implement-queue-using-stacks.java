@@ -12,12 +12,12 @@ empty() -- 返回队列是否为空。
 // @lc code=start
 class MyQueue {
 
-    Stack<Integer> stackIn;
+    Stack<Integer> stackIn; //声明变量，没有实际的对象（declaration of a variable)
     Stack<Integer> stackOut;
 
     //initialize the data structurea here, stackIn and stackOut
     public MyQueue() {
-        stackIn = new Stack<>();
+        stackIn = new Stack<>(); //allocates an object and make stackIn reference that object
         stackOut = new Stack<>();
         
     }
@@ -41,7 +41,7 @@ class MyQueue {
     
     //Get the front element(只查询数值，不弹出，所以还需要借助push来放回去)
     public int peek() {
-        int res=this.pop();
+        int res=this.pop(); //这里直接调用同一个类下面的pop函数（This directly calls the pop function from the same class.）
         stackOut.push(res);
         return res;
         

@@ -1,9 +1,11 @@
 package sandbox;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 
 import javax.swing.tree.TreeNode;
 
@@ -11,62 +13,32 @@ public class leetcodeTest {
 
     public static void main(String[] args) {
         leetcodeTest leetcodeTest = new leetcodeTest();
-        int[] nums = {2,2,2,2,2}; 
 
-        List<List<Integer>> result = leetcodeTest.foursum(nums, 8);
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = new ListNode(5);
 
-        System.out.println(result); 
+        ListNode slow = leetcodeTest.middleNode(head);
+
+        System.out.println(slow); 
     
     }
 
-    private List<List<Integer>> foursum(int[] nums, int target) {
+    public ListNode middleNode(ListNode head) {
 
-        List<List<Integer>> res = new ArrayList<>();
+        ListNode slow = head;
+        ListNode fast = head;
 
-        Arrays.sort(nums);
+        while ( fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        } 
 
-        for (int i = 0; i < nums.length; i++) {
+        return slow;  
+    }
 
-            //当nums[i]是正数，且大于target，不需要继续向后遍历
-            if (nums[i] >= 0 && nums[i] > target) break;
-
-            //去重, 避免重新处理同样的i元素
-            if (i > 0 && nums[i-1] == nums[i]) continue;
-
-            for (int j = i+1; j < nums.length; j++) {
-
-                //当nums[i]+nums[j]是正数，且大于target，不需要继续向后遍历
-                 if (nums[i]+nums[j] >= 0 && nums[i]+nums[j] > target) break;
-
-                //对j进行去重
-                if (j > i+1 && nums[j-1] == nums[j]) continue;
-
-                //双指针
-                int left = j+1;
-                int right = nums.length-1;
-
-                while (left < right) {
-                    int sum = nums[i]+nums[j]+nums[left]+nums[right];
-
-                    if (sum > target) {
-                        right--;
-                    } else if (sum < target) {
-                        left++;
-                    } else {
-                         res.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
-
-                        while (left < right && nums[left] == nums[left+1]) left++;//left去重
-                        while (right > left && nums[right-1] == nums[right]) right--; //right去重
-
-                         left++;
-                         right--;
-                    }
-                }
-            }
-        }
-        return res;
-
-}
 }
 
     
