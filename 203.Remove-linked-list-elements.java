@@ -29,7 +29,7 @@ class Solution {
         return head;
     }
 
-    ListNode dummyHead = new ListNode(0, head);
+    ListNode dummyHead = new ListNode(0, head);//The actual value (0) doesn't matter much because it's not part of the list's logical data
     ListNode cur = dummyHead;
 
     while (cur.next != null) {

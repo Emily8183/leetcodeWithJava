@@ -42,7 +42,7 @@ class LRUCache {
             return -1;
         }
         // 如果 key 存在，移动该节点到头部
-        moveToHead(node);
+        moveToHead(node); //头部表示最近使用的key
         return node.value;
     }
 
@@ -53,16 +53,17 @@ class LRUCache {
             DLinkedNode newNode = new DLinkedNode(key, value);
             cache.put(key, newNode);
             addToHead(newNode);
-            ++size;
+            size++;
+            // 当size++自成一行时，前置自增或后置自增没有区别
             if (size > capacity) {
                 // 如果超过容量，移除尾部节点
                 DLinkedNode tail = removeTail();
                 cache.remove(tail.key);
-                --size;
+                size--;
             }
         } else {
             // 如果 key 存在，先通过哈希表定位，再修改 value，并移到头部
-            node.value = value;
+            node.value = value; //将节点 node 中的旧值更新为新值 value
             moveToHead(node);
         }
     }
@@ -85,7 +86,7 @@ class LRUCache {
     }
 
     private DLinkedNode removeTail() {
-        DLinkedNode res = tail.prev;
+        DLinkedNode res = tail.prev; //tail是伪尾部，真正的tail是tail.prev
         removeNode(res);
         return res;
     }
