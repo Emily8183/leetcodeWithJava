@@ -34,7 +34,7 @@ class Solution {
         int left =0;
         int right = nums.length;
 
-        while(left < right)
+        while(left < right) //左闭右开，当left<right，区间中至少有一个元素，保证这是有效的区间
 
         {
            int mid = left + (right-left)/2; 
