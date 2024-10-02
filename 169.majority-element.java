@@ -67,7 +67,7 @@ class Solution {
         //初始为null时用对象类型（reference type),而不是基本数据类型（primitive type)
 
         for(int num: nums) {
-            if(count == 0) {
+            if(count == 0) { //这里应该是双等号
                 candidate = num;
                 //如果 count 变为 0，则表示当前候选元素已经不可能是多数元素（因为它在数组中遇到的反对票与支持票一样多），此时会更新 candidate 为当前的 num，并重置 count 为 1。
             }
