@@ -20,6 +20,7 @@ class Solution {
         }
 
         for(int i= j;i<nums.length; i++){
+            //注意这里i的值，nums = [0,1,0,3,12]这个例子中，slow的指针是停在3而不是2，因此i = slow，而不是slow+1
             nums[i]=0;
         }
     }

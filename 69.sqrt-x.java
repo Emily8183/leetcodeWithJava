@@ -22,9 +22,10 @@ class Solution {
 
             if (middle > x / middle) {
                 right = middle - 1;
+                result = right;
             } else if ( middle < x / middle) {
                 left = middle + 1;
-                result = middle;
+                // result = middle;
             } else {
                 return middle;
             }
