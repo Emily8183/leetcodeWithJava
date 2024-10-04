@@ -44,7 +44,7 @@ class Solution {
             return mid;
            } else if(nums[mid] < target){
             left = mid + 1;
-           } else {right = mid;}
+           } else right = mid;
 
         }
 

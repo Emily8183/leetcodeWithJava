@@ -18,8 +18,6 @@ class Solution {
             if(map.containsKey(temp)){
             result[0]= i;
             result[1]=map.get(temp);
-
-            break;
             }
 
         map.put(nums[i],i);
