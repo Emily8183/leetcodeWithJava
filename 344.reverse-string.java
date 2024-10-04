@@ -10,18 +10,17 @@
 class Solution {
     public void reverseString(char[] s) {
         reverse (s, 0, s.length-1); //char用单引号''，string用双引号""
-        
     }
 
     private void reverse(char[] s, int left, int right) {
       
-        if(left>=right) return; //edge case
+        if (left >= right) return; //corner case
 
-        while(left<right){ //这里需要走while loop
+        while (left < right) {
+
             char temp = s[right];
 
             s[right]= s[left];
-
             s[left] = temp;
 
             right--;

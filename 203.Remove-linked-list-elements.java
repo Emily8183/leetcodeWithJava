@@ -29,8 +29,8 @@ class Solution {
         return head;
     }
 
-    ListNode dummyHead = new ListNode(0, head);
-    ListNode cur = dummyHead;
+    ListNode dummyHead = new ListNode(0, head);//The actual value (0) doesn't matter much because it's not part of the list's logical data
+    ListNode cur = dummyHead; //不能直接用头节点遍历，因为头节点所指向的值不可以改变
 
     while (cur.next != null) {
         if (cur.next.val == val) {
@@ -40,6 +40,7 @@ class Solution {
             //如果没有找到val，继续遍历
         }
     }
+    
     return dummyHead.next;
 }
 }
