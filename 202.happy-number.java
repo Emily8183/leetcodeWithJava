@@ -23,7 +23,7 @@ class Solution {
 
     private int getNext(int n) {
         int totalSum = 0;
-        while(n >0) {
+        while(n >0) { // 1 % 10 = 0; 1/10=0, so when n is 1, the loop breaks
             int temp = n % 10;
             totalSum += temp * temp;
             n = n/10;
