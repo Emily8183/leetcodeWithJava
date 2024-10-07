@@ -6,36 +6,33 @@ public class leetcodeArrStrTest {
 
         leetcodeArrStrTest leetcodeArrStrTest = new leetcodeArrStrTest();
 
-        int[] nums = {1,3,5};
-        int target = 5;
+        String s = "abcc";
+        String t = "ccab";
     
-        Integer result  = leetcodeArrStrTest.searchInsert(nums, target);
+        Boolean result = leetcodeArrStrTest.checkletters(s,t);
 
         System.out.println(result);
     }
 
-    public int searchInsert(int[] nums, int target) {
-        int left = 0;
-        int right = nums.length;
+    public boolean checkletters(String a, String b) {
+        
+        int[] arr = new int[26];
 
-        while ( left < right) {
-            int mid = left + (right-left)/2; //to avoid overflow
-
-            if (target < nums[mid]) {
-                right = nums[mid];
-            } else if (target > nums[mid]) {
-                left = nums[mid] + 1;
-            } else if (target == nums[mid]) {
-                return mid;
-            }
-
-            left++;
-            right--;
+        for ( int i = 0; i < a.length(); i++) {
+            arr[a.charAt(i) -'a']++;
         }
 
-        return left;
+        for ( int i = 0; i < b.length(); i++) {
+            arr[b.charAt(i) - 'a']--;
+        }
 
+        for ( int i = 0; i < arr.length; i++) {
+            if (arr[i] != 0) {
+                return false;
+            }
+        }
 
+        return true;
         
     }
 
