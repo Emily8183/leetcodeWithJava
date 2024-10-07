@@ -1,5 +1,8 @@
 package sandbox;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class leetcodeArrStrTest {
 
     public static void main(String[] args) {
@@ -7,32 +10,44 @@ public class leetcodeArrStrTest {
         leetcodeArrStrTest leetcodeArrStrTest = new leetcodeArrStrTest();
 
         String s = "abcc";
-        String t = "ccab";
+        String t = "cca";
     
         Boolean result = leetcodeArrStrTest.checkletters(s,t);
 
         System.out.println(result);
     }
 
-    public boolean checkletters(String a, String b) {
-        
-        int[] arr = new int[26];
+    public boolean checkletters(String s, String t) {
 
-        for ( int i = 0; i < a.length(); i++) {
-            arr[a.charAt(i) -'a']++;
+        if (s.length() != t.length()) {
+            return false; 
         }
 
-        for ( int i = 0; i < b.length(); i++) {
-            arr[b.charAt(i) - 'a']--;
+        Map<Character, Integer> map = new HashMap<>();
+
+        for (char c : s.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1); 
         }
 
-        for ( int i = 0; i < arr.length; i++) {
-            if (arr[i] != 0) {
+        for (char c : t.toCharArray()) {
+            if (!map.containsKey(c)) {
+                return false; 
+            }
+
+            map.put(c, map.get(c) - 1);  
+            if (map.get(c) < 0) {
+                return false; 
+            }
+        }
+
+        for (int count : map.values()) {
+            if (count != 0) {
                 return false;
             }
         }
 
         return true;
+
         
     }
 
