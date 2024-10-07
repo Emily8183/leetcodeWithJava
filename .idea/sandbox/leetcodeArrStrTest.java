@@ -1,40 +1,52 @@
 package sandbox;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class leetcodeArrStrTest {
 
     public static void main(String[] args) {
 
         leetcodeArrStrTest leetcodeArrStrTest = new leetcodeArrStrTest();
 
-        int[] nums = {1,3,5};
-        int target = 5;
+        String s = "abcc";
+        String t = "cca";
     
-        Integer result  = leetcodeArrStrTest.searchInsert(nums, target);
+        Boolean result = leetcodeArrStrTest.checkletters(s,t);
 
         System.out.println(result);
     }
 
-    public int searchInsert(int[] nums, int target) {
-        int left = 0;
-        int right = nums.length;
+    public boolean checkletters(String s, String t) {
 
-        while ( left < right) {
-            int mid = left + (right-left)/2; //to avoid overflow
-
-            if (target < nums[mid]) {
-                right = nums[mid];
-            } else if (target > nums[mid]) {
-                left = nums[mid] + 1;
-            } else if (target == nums[mid]) {
-                return mid;
-            }
-
-            left++;
-            right--;
+        if (s.length() != t.length()) {
+            return false; 
         }
 
-        return left;
+        Map<Character, Integer> map = new HashMap<>();
 
+        for (char c : s.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1); 
+        }
+
+        for (char c : t.toCharArray()) {
+            if (!map.containsKey(c)) {
+                return false; 
+            }
+
+            map.put(c, map.get(c) - 1);  
+            if (map.get(c) < 0) {
+                return false; 
+            }
+        }
+
+        for (int count : map.values()) {
+            if (count != 0) {
+                return false;
+            }
+        }
+
+        return true;
 
         
     }
