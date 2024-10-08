@@ -13,51 +13,90 @@ class Solution {
 
         //Solution1: HashMap
 
-        if (s.length() != t.length()) return false;
+        // if (s.length() != t.length()) return false;
 
-        Map<Character, Integer> map = new HashMap<>();
+        // Map<Character, Integer> map = new HashMap<>();
 
-        // for (int i = 0; i < s.length(); i++) {
+        // // for (int i = 0; i < s.length(); i++) {
 
-        //     char c = s.charAt(i);
+        // //     char c = s.charAt(i);
 
-        //     if (!map.containsKey(c)) {
-        //         map.put(c,1);
-        //     } else {
-        //         map.put(c,map.get(c)+1);
+        // //     if (!map.containsKey(c)) {
+        // //         map.put(c,1);
+        // //     } else {
+        // //         map.put(c,map.get(c)+1);
+        // //     }
+        // // }
+
+        // //optimize the above code
+        // for (char c : s.toCharArray()) {
+        //     map.put(c, map.getOrDefault(c,0)+1);
+        // }
+
+        // // for (int i = 0; i < t.length(); i++) {
+
+        // //     char c = t.charAt(i);
+
+        // //     if (!map.containsKey(c) || map.get(c) < 0) {
+        // //         return false;
+        // //     } 
+
+        // //     map.put(c,map.get(c)-1);
+        // // }
+
+        // //optimize the above code
+        // for (char c : t.toCharArray()) {
+        //     if (!map.containsKey(c) || map.get(c) < 0) return false;
+
+        //     map.put(c, map.get(c)-1);
+        // }
+
+        // for (int num : map.values()) {
+        //     if (num != 0) {
+        //         return false;
         //     }
         // }
 
-        //optimize the above code
-        for (char c : s.toCharArray()) {
-            map.put(c, map.getOrDefault(c,0)+1);
+        // return true;
+
+        //Solution 2: ASCII code
+
+        // set up an array to store the matching number to each letter
+        // a - 0, b - 1, c - 2
+        // initial value to each letter is 0
+    
+        int[] arr = new int[26];
+
+        // loop in the first s, and add on the count
+        for (int i = 0; i < s.length(); i++) {
+
+            char c = s.charAt(i);
+
+            int code = c-'a';
+
+            arr[code]++;
         }
 
-        // for (int i = 0; i < t.length(); i++) {
+        // loop in the second t, and minus the count
+        for (int i = 0; i < t.length(); i++) {
 
-        //     char c = t.charAt(i);
+            char c = t.charAt(i);
 
-        //     if (!map.containsKey(c) || map.get(c) < 0) {
-        //         return false;
-        //     } 
+            int code = c-'a';
 
-        //     map.put(c,map.get(c)-1);
-        // }
+            arr[code]--;
+        }          
 
-        //optimize the above code
-        for (char c : t.toCharArray()) {
-            if (!map.containsKey(c) || map.get(c) < 0) return false;
-
-            map.put(c, map.get(c)-1);
-        }
-
-        for (int num : map.values()) {
-            if (num != 0) {
+        // check if any arr[i] != 0
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != 0) {
                 return false;
             }
         }
 
         return true;
+
+
 
     }
 }
