@@ -5,28 +5,48 @@
  */
 
 // @lc code=start
+
+import java.util.Map;
+
 class Solution {
     public boolean isAnagram(String s, String t) {
 
-        int[] count = new int[26];
+        //Solution1: HashMap
 
-        for (int i=0; i< s.length();i++) {
-            count[s.charAt(i) -'a'] ++;
-        }
+        if (s.length() != t.length()) return false;
 
-        for (int i=0; i< t.length();i++) {
-            count[t.charAt(i) -'a']--;
-        }
+        Map<Character, Integer> map = new HashMap<>();
 
-        for (int i=0; i < count.length; i++) {
-            if (count[i] != 0) {
-            return false;
+        for (int i = 0; i < s.length(); i++) {
+
+            char c = s.charAt(i);
+
+            if (!map.containsKey(c)) {
+                map.put(c,1);
+            } else {
+                map.put(c,map.get(c)+1);
             }
         }
-        //还有另一种写法，for(int count:record)
+        
+        for (int i = 0; i < t.length(); i++) {
+
+            char c = t.charAt(i);
+
+            if (!map.containsKey(c) || map.get(c) < 0) {
+                return false;
+            } 
+
+            map.put(c,map.get(c)-1);
+        }
+
+        for (int num : map.values()) {
+            if (num != 0) {
+                return false;
+            }
+        }
 
         return true;
-        
+
     }
 }
 // @lc code=end
