@@ -17,26 +17,38 @@ class Solution {
 
         Map<Character, Integer> map = new HashMap<>();
 
-        for (int i = 0; i < s.length(); i++) {
+        // for (int i = 0; i < s.length(); i++) {
 
-            char c = s.charAt(i);
+        //     char c = s.charAt(i);
 
-            if (!map.containsKey(c)) {
-                map.put(c,1);
-            } else {
-                map.put(c,map.get(c)+1);
-            }
+        //     if (!map.containsKey(c)) {
+        //         map.put(c,1);
+        //     } else {
+        //         map.put(c,map.get(c)+1);
+        //     }
+        // }
+
+        //optimize the above code
+        for (char c : s.toCharArray()) {
+            map.put(c, map.getOrDefault(c,0)+1);
         }
-        
-        for (int i = 0; i < t.length(); i++) {
 
-            char c = t.charAt(i);
+        // for (int i = 0; i < t.length(); i++) {
 
-            if (!map.containsKey(c) || map.get(c) < 0) {
-                return false;
-            } 
+        //     char c = t.charAt(i);
 
-            map.put(c,map.get(c)-1);
+        //     if (!map.containsKey(c) || map.get(c) < 0) {
+        //         return false;
+        //     } 
+
+        //     map.put(c,map.get(c)-1);
+        // }
+
+        //optimize the above code
+        for (char c : t.toCharArray()) {
+            if (!map.containsKey(c) || map.get(c) < 0) return false;
+
+            map.put(c, map.get(c)-1);
         }
 
         for (int num : map.values()) {
