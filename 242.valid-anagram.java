@@ -70,21 +70,26 @@ class Solution {
         // loop in the first s, and add on the count
         for (int i = 0; i < s.length(); i++) {
 
-            char c = s.charAt(i);
+            // char c = s.charAt(i);
 
-            int code = c-'a';
+            // int code = c-'a';
 
-            arr[code]++;
+            // arr[code]++;
+
+            arr[s.charAt(i)-'a']++;
+
         }
 
         // loop in the second t, and minus the count
         for (int i = 0; i < t.length(); i++) {
 
-            char c = t.charAt(i);
+            // char c = t.charAt(i);
 
-            int code = c-'a';
+            // int code = c-'a';
 
-            arr[code]--;
+            // arr[code]--;
+            
+            arr[t.charAt(i)-'a']--;
         }          
 
         // check if any arr[i] != 0
@@ -95,9 +100,6 @@ class Solution {
         }
 
         return true;
-
-
-
     }
 }
 // @lc code=end
