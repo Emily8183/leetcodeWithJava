@@ -56,7 +56,7 @@ class Solution {
 
         while (!stack.isEmpty()) {
             TreeNode node = stack.pop();
-            result.add(node.val);
+            result.add(node.val); 
 
             if (node.right != null) {
                 stack.push(node.right);
