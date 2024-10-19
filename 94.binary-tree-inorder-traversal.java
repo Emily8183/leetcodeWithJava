@@ -43,14 +43,14 @@ class Solution {
     //     list.add(root.val);
     //     inorder(root.right, list);
 
-    //中序遍历就是要用cur来遍历二叉树，判断右孩子是否为空，不为空时则弹出
+    //
     // }
 
     public List<Integer> inorderTraversal(TreeNode root) {
 
         List<Integer> result = new ArrayList<>();
 
-        Stack<TreeNode> stack = new Stack<>(); //注意是treeNode
+        Stack<TreeNode> stack = new Stack<>(); 
 
         if (root == null) return result;
 
