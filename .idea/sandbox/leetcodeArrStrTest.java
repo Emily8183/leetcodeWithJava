@@ -1,6 +1,8 @@
 package sandbox;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class leetcodeArrStrTest {
@@ -9,52 +11,34 @@ public class leetcodeArrStrTest {
 
         leetcodeArrStrTest leetcodeArrStrTest = new leetcodeArrStrTest();
 
-        String s = "abac";
-        String t = "caab";
-    
-        Boolean result = leetcodeArrStrTest.checkletters(s,t);
+        int[] nums = {0,1,2,4,5,7};
+
+        List<String> result = leetcodeArrStrTest.summaryRanges(nums);
 
         System.out.println(result);
     }
 
-    public boolean checkletters(String s, String t) {
+    public List<String> summaryRanges(int[] nums) {
 
-       
-       if (s.length() != t.length()) return false;
-
-       Map<Character, Integer> map = new HashMap<>();
-
-       //map.put to add on all the key-value pair of the String s; key - "a", value - num
-       for (int i = 0; i < s.length(); i++) {  
-
-            char c = s.charAt(i); //i = 2
-
-            if (map.containsKey(c)) {
-                map.put(c, map.get(c)+1);
-            } else {
-                map.put(c, 1);
-            }
-       }
-
-       //loop in String t, check 1) if the map contains the letter, 2) check the frequency, value--;
-       for (int i = 0; i < t.length(); i++) {
-
-            char c = t.charAt(i);
-
-            if (!map.containsKey(c) || map.get(c) == 0) return false;
-
-            map.put(c, map.get(c)-1); 
-        }
-       
-
-       // a loop in the map, if all the value turns to 0, return true
-       for (int num : map.values()) {
-            if (num != 0) {
-            return false;
+       List<String> result = new ArrayList<String>();
+        int start = 0;
+        
+        for (int end = 0; end < nums.length; end++) {
+            if(end+1 < nums.length && nums[end+1] == nums[end] + 1) {
+                continue;
             } 
+
+            if (end == start) {
+                result.add(String.valueOf(nums[start]));
+            } else { 
+                result.add(nums[start] + "->" + nums[end]);
+            }
+
+            start = end+1;
+            
         }
 
-        return true; //all counts match
+       return result;
     }
 }
 
