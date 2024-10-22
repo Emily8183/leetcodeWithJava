@@ -5,6 +5,11 @@
  */
 
 // @lc code=start
+
+import java.util.Stack;
+
+import javax.swing.tree.TreeNode;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -21,21 +26,56 @@
  * }
  */
 class Solution {
-    public List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
-        postorder(root, result);
-        return result; 
-    }
 
-    public void postorder(TreeNode root, List<Integer> list) {
-        if(root == null) {
-            return;
+    //Recursion:
+    // public List<Integer> postorderTraversal(TreeNode root) {
+    //     List<Integer> result = new ArrayList<>();
+    //     postorder(root, result);
+    //     return result; 
+    // }
+
+    // public void postorder(TreeNode root, List<Integer> list) {
+    //     if(root == null) {
+    //         return;
+    //     }
+
+    //     postorder(root.left, list);
+    //     postorder(root.right, list);
+    //     list.add(root.val);
+    // }
+
+    //Iterative:
+    public List<Integer> postorderTraversal(TreeNode root) {
+
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+
+        if (root == null) return result;
+
+        stack.add(root);
+
+        while (!stack.isEmpty()) {
+
+            TreeNode node = stack.pop();
+
+            result.add(node.val);
+
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+
         }
 
-        postorder(root.left, list);
-        postorder(root.right, list);
-        list.add(root.val);
+        Collections.reverse(result);
+
+        return result;
+
     }
+
 }
 // @lc code=end
 

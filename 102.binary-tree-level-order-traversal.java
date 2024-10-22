@@ -6,6 +6,8 @@
 
 // @lc code=start
 
+import java.util.Deque;
+
 import javax.swing.tree.TreeNode;
 
 /**
@@ -25,47 +27,51 @@ import javax.swing.tree.TreeNode;
  */
 class Solution {
 
-    public List<List<Integer>> resList = new ArrayList<>();
+    public List<List<Integer>> resList = new ArrayList<List<Integer>>();
     public List<List<Integer>> levelOrder(TreeNode root) {
-        if(root == null) {
-            return resList;
-        }
-
         queueResult(root);
-
         return resList;
-        
     }
 
     public void queueResult(TreeNode node) {
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
-        queue.offer(node);
 
-        while(!queue.isEmpty()) {
+       //early return
+       if (node == null) return;
 
-            int size = queue.size();
-            //通过int快照queue的长度，不可以直接将queue.size()--。在这个过程中，虽然 queue 的大小在动态变化（因为你可能会往里面添加下一层的节点），但是 size 变量不会变，这样可以确保当前层的节点全部被处理完。
+       //创建一个队列，把root放进队列
+       Queue<TreeNode> que = new LinkedList<TreeNode>();
+       que.offer(node);
 
-            List<Integer> currentLevel = new ArrayList<>();
+       //while loop，当队列不为空
+       while (!que.isEmpty()) {
+        //记录队列的size, 此时size = 1;
+        int len = que.size();
 
-            while (size-- > 0) {
+        //创建一个List，存取每一层的元素，最后这个List要加到resList
+        List<Integer> list = new ArrayList<Integer>();
 
-                TreeNode temp = queue.poll();
+        while (len > 0) {
+            TreeNode tempNode = que.poll();
+            list.add(tempNode.val);
 
-                currentLevel.add(temp.val);
-
-                if(temp.left !=null) {
-                    queue.offer(temp.left);
-                }
-
-                if(temp.right!=null) {
-                    queue.offer(temp.right);
-                }
-
+            //只要队列的size>1，就陆续不断把元素拿出队列，root有左右两个孩子，加入队列，更新size = 2
+            if (tempNode.left != null) {
+                que.offer(tempNode.left);
+            } 
+            
+            //注意这里不是else if关系
+            if (tempNode.right != null) {
+                que.offer(tempNode.right);
             }
 
-            resList.add(currentLevel);
-        }
+            len--;
+        } 
+
+        resList.add(list);
+
+       }
+
+       
 
 
     }
