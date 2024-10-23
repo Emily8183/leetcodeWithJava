@@ -42,10 +42,11 @@ class Solution {
 
     private void connectNode(Node left, Node right){
         if(left == null || right == null) {
-            return; //
+            return; //说明不满足perfect binary tree的条件
         }
 
         //根据题目要求，populate next right pointers in each node
+        //用前序遍历，先要把左节点和右节点相连
         left.next = right;
 
         //递归处理左子树内部的连接

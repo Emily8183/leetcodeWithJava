@@ -59,6 +59,7 @@ class Solution {
                 prev = cur;
             }
             //当size <= 0的时候需要重置prev。
+            //也可以把Node prev = null放在while loop内, 每次while循环自动变成null
             prev = null;
         }
 
