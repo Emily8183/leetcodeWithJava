@@ -28,7 +28,7 @@ class Solution {
         List<Integer> result = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
 
-        if(root==null) return new ArrayList<>();  
+        if(root == null) return result;  
         //在输入为空树的情况下，安全且合理地返回一个空的结果。如返回Null，调用该方法的代码在访问返回结果时，可能会抛出 NullPointerException
 
         queue.offer(root);//先要把root放进queue内
@@ -46,7 +46,7 @@ class Solution {
 
                 if(node.left != null) {queue.offer(node.left);}
 
-                if(node.right !=null) {queue.offer(node.right);}
+                if(node.right != null) {queue.offer(node.right);}
 
             }
 
