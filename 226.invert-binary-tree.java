@@ -22,22 +22,16 @@
  */
 class Solution {
     public TreeNode invertTree(TreeNode root) {
-        if(root == null){
-            return null;
-            //表示当前节点为空时，说明没有子树，返回null表示无需进一步操作
-        }
+        if ( root == null) return root;
+
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
 
         invertTree(root.left);
         invertTree(root.right);
-        traverse(root);
 
         return root;
-    }
-
-    private void traverse(TreeNode node) {
-        TreeNode temp = node.left;
-        node.left = node.right;
-        node.right = temp;
     }
 }
 // @lc code=end
