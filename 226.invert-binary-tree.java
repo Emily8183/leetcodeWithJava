@@ -22,19 +22,42 @@
  */
 class Solution {
     public TreeNode invertTree(TreeNode root) {
-        if(root == null){
-            return null;
-            //表示当前节点为空时，说明没有子树，返回null表示无需进一步操作
-        }
+        //递归法
+        // if ( root == null) return root;
 
-        invertTree(root.left);
-        invertTree(root.right);
-        traverse(root);
+        // TreeNode temp = root.left;
+        // root.left = root.right;
+        // root.right = temp;
+
+        // invertTree(root.left);
+        // invertTree(root.right);
+
+        // return root;
+
+        //迭代法
+
+        if (root == null) return root;
+
+        Queue<TreeNode> que = new LinkedList<>();
+
+        if (root != null) que.offer(root);
+
+        while(!que.isEmpty()) {
+            int len = que.size();
+            TreeNode temp = que.poll();
+            invert(temp);
+
+            if (temp.left != null) que.offer(temp.left);
+            if (temp.right != null) que.offer(temp.right);
+
+            len--;
+
+        }
 
         return root;
     }
 
-    private void traverse(TreeNode node) {
+    private void invert (TreeNode node) {
         TreeNode temp = node.left;
         node.left = node.right;
         node.right = temp;

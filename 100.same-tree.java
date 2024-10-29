@@ -27,10 +27,15 @@ class Solution {
         if (p == null && q == null) return true;
 
         //if one root is null, the other isnt, return false OR if both root arent null but valid are different, return false
-        if (p == null || q == null || p.val != q.val) return false;
+        if (p == null || q == null) return false;
+
+        if (p.val != q.val) return false;
 
         //recursion of the left and right tree
-        return (isSameTree(p.left, q.left) && isSameTree(p.right, q.right));
+        boolean compareLeft = isSameTree(p.left, q.left);
+        boolean compareRight = isSameTree(p.right, q.right);
+
+        return compareLeft && compareRight;
     }
 }
 // @lc code=end
