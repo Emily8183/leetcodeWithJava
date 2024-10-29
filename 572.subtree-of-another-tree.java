@@ -23,7 +23,7 @@
 class Solution {
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
 
-        //Solution 1: using queue and recursion
+        //Solution 1: use queue and recursion
         // Queue<TreeNode> que = new LinkedList<>();
 
         // que.offer(root);
