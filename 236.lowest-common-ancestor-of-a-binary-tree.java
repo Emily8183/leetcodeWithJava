@@ -28,7 +28,7 @@ class Solution {
                 return null;
             }else if(left == null && right != null) { // 若找到一个节点
                 return right;
-            }else if(left != null && right == null) { // 若找到一个节点
+            }else if(left != null && right == null) { // 若找到一个节点b
                 return left;
             }else { // 若找到两个节点
                 return root;
