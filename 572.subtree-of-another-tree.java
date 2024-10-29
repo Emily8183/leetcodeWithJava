@@ -22,29 +22,43 @@
  */
 class Solution {
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
-        Queue<TreeNode> que = new LinkedList<>();
 
-        que.offer(root);
+        //Solution 1: using queue and recursion
+        // Queue<TreeNode> que = new LinkedList<>();
 
-        while (!que.isEmpty()) {
-            int len = que.size();
+        // que.offer(root);
 
-            while (len > 0) {
+        // while (!que.isEmpty()) {
+        //     int len = que.size();
 
-                TreeNode temp = que.poll();
+        //     while (len > 0) {
+
+        //         TreeNode temp = que.poll();
                 
-                if (temp.val == subRoot.val) {
-                    if (compareTwoTrees(temp,subRoot)) return true;
-                }
+        //         if (temp.val == subRoot.val) {
+        //             if (compareTwoTrees(temp,subRoot)) return true;
+        //         }
 
-                if(temp.left != null) que.offer(temp.left);
-                if(temp.right != null) que.offer(temp.right);
+        //         if(temp.left != null) que.offer(temp.left);
+        //         if(temp.right != null) que.offer(temp.right);
 
-                len--;
-            }
-        }
+        //         len--;
+        //     }
+        // }
 
-        return false;
+        // return false;
+
+        //solution 2: use recursion to call compareTwoTrees
+        if (subRoot == null) return true;
+
+        if (root == null) return false;
+
+        if (compareTwoTrees(root, subRoot)) return true;
+
+        boolean checkLeftSide = isSubtree(root.left, subRoot);
+        boolean checkRightSide = isSubtree(root.right, subRoot);
+
+        return checkLeftSide || checkRightSide;
         
     }
 
