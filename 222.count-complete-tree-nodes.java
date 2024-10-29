@@ -28,6 +28,15 @@ import javax.swing.tree.TreeNode;
  */
 class Solution {
     public int countNodes(TreeNode root) {
+
+        //大众解法
+        // if (root == null) {
+        //     return 0;
+        // }
+
+        // return countNodes(root.left) + countNodes(root.right) + 1;
+
+        //针对complete binary tree的解法
         if(root == null) return 0;
 
         TreeNode left = root.left;
