@@ -18,6 +18,11 @@
  *         this.left = left;
  *         this.right = right;
  *     }
+ *  Solution:
+
+ 1. 题目要求的输出是 每条路径作为一个字符串。所以我们需要将路径转换成 String 格式，比如 "1->2->3"，将这些字符串存入 List<String>，而不是嵌套列表 List<List<Integer>>。
+ 2. 这道题需要回溯到分叉的节点，这样才可以向另一边遍历
+ 3. 前序遍历
  * }
  */
 class Solution {
