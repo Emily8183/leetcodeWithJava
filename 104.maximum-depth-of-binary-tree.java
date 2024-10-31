@@ -24,9 +24,9 @@ class Solution {
     public int maxDepth(TreeNode root) {
         //递归
         // if(root == null) return 0;
-        //节点为空时，高度为零
+        //节点为空时，深度为零
 
-        //使用后序遍历法，左右中
+        //使用后序遍历法，左右中，因为根节点的高度就是二叉树的最大深度，所以本题中我们通过后序求的根节点高度来求的二叉树最大深度。
         // int left = maxDepth(root.left);
         // int right = maxDepth(root.right);
         // int maxHeight = Math.max(left,right) + 1;

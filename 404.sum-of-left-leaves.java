@@ -22,27 +22,23 @@
  */
 class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
-       //终止条件
-
-       if (root == null) return 0;
-
-       //使用后序遍历：左右中（=左右根节点）
-       //定义左子树中左叶子的总和
-       int valueOfLeftTree = sumOfLeftLeaves(root.left);
-
-       if(root.left != null && root.left.left == null && root.left.right == null) {
-            valueOfLeftTree= root.left.val;
-       }
-
-        //定义右子树中左叶子的总和
-       int valueOfRightTree = sumOfLeftLeaves(root.right);
-
-       //中
-       int sum = valueOfLeftTree + valueOfRightTree;
-       return sum;
-
-    }
-}
+  
+          if (root == null) return 0;
+  
+          int leftSum = sumOfLeftLeaves(root.left); //左子树的左叶子之和
+          int rightSum = sumOfLeftLeaves(root.right); //右子树的右叶子之和
+  
+          //判断叶子节点
+          if (root.left != null && root.left.left == null && root.left.right == null) {
+              leftSum = root.left.val;
+          }
+  
+          int sum = 0;
+          sum = leftSum + rightSum;
+  
+          return sum;
+      }
+  }
         
  
 // @lc code=end
