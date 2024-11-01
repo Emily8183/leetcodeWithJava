@@ -28,21 +28,16 @@ class Solution {
 
     //排除空节点，排除对应值不相同，往下递归
     private boolean compare(TreeNode left, TreeNode right) {
-        if(left == null && right != null) {
-            return false;
-        } 
-        if(left != null && right == null) {
-            return false;
-        }
-        if(left == null & right == null) {
-            return true;
-        } 
-        if (left.val != right.val) {
-            return false;
-        }
+  
+        if(left == null & right == null) return true;
+        
+        if(left == null || right == null) return false;
+
+        if (left.val != right.val) return false;
 
         boolean compareOuter = compare(left.left, right.right);
         boolean compareInner = compare(left.right, right.left);
+        
         return compareOuter && compareInner;
         
     }
