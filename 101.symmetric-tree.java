@@ -1,7 +1,7 @@
 /*
  * @lc app=leetcode id=101 lang=java
  *
- * [101] Symmetric Tree
+ * [101] Symmetric Tree 对称
  */
 
 // @lc code=start
@@ -37,7 +37,7 @@ class Solution {
 
         boolean compareOuter = compare(left.left, right.right);
         boolean compareInner = compare(left.right, right.left);
-        
+
         return compareOuter && compareInner;
         
     }

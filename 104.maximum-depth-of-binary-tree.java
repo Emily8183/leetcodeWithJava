@@ -39,6 +39,8 @@ class Solution {
         //迭代法
         if (root == null) return 0;
 
+        if (root.left == null && root.right == null) return 1; 
+
         Queue<TreeNode> que = new LinkedList<>();
 
         que.offer(root);
@@ -50,6 +52,7 @@ class Solution {
             int len = que.size();
 
             while (len > 0) {
+                
                 TreeNode temp = que.poll();
                     
                     if (temp.left != null) {
@@ -61,6 +64,7 @@ class Solution {
                     }
                 len--;
             }
+
             depth++;
         }
 
