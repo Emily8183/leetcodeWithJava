@@ -39,14 +39,26 @@ class Solution {
         path.add(node.val);
 
         if (node.left == null && node.right == null && target == 0) {
-            list.add(new ArrayList<>(path));
+            list.add(new ArrayList<>(path)); 
         }
 
-        helper(node.left, target, list, path);
-        helper(node.right, target, list, path);
+        // helper(node.left, target, list, path);
+        // helper(node.right, target, list, path);
 
-        path.remove(path.size()-1);//回溯需要放在递归后面
+        // path.remove(path.size()-1);//回溯需要放在递归后面
 
+        //以上三行可以展开详细写，还原回溯的步骤：
+
+        if (node.left != null) {
+            helper(node.left, target, list, path);
+            path.remove(path.size()-1);
+        }
+
+        if (node.right != null) {
+            helper(node.right, target, list, path);
+            path.remove(path.size()-1);
+        }
+ 
     }
 }
 // @lc code=end
