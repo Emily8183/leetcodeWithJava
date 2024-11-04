@@ -30,7 +30,7 @@ class Solution {
   
           //判断叶子节点
           if (root.left != null && root.left.left == null && root.left.right == null) {
-              leftSum = root.left.val;
+            leftSum += root.left.val;//左叶子的值不断叠加
           }
   
           int sum = 0;
