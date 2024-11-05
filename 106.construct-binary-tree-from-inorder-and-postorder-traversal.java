@@ -22,43 +22,44 @@
  */
 class Solution {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
-        List<Integer> inorderList = new ArrayList<>(); //存储中序和后序遍历结果的列表
-        List<Integer> postorderList = new ArrayList<>();
 
-        for(int val:inorder) inorderList.add(val); //通过for-each loop，把题目给到的数组中的每一个元素，添加到List中，这样可以使用 List 的 subList 方法，避免数组的频繁复制
-        for(int val:postorder) postorderList.add(val);
-        return traversal(inorderList, postorderList);
+        if (postorder.length == 0 || inorder.length == 0) return null;
+
+        return buildHelper(inorder, 0, inorder.length, postorder, 0, postorder.length);
     }
 
-    private TreeNode traversal(List<Integer> inorder, List<Integer> postorder) {
-        if(postorder.size() == 0) return null;
+    private TreeNode buildHelper(int[] inorder, int inorderStart, int inorderEnd, int[] postorder, int postorderStart, int postorderEnd) {
+        if (inorderStart >= inorderEnd || postorderStart >= postorderEnd) return null; // 因为是左闭右开区间，所以加入==，代表 there's no element to process
 
-        int rootValue = postorder.get(postorder.size()-1); //后序遍历最后一个数值就是根节点的值
+        int rootVal = postorder[postorderEnd - 1]; //左闭右开区间
 
-        TreeNode root = new TreeNode(rootValue); //定义根节点
+        TreeNode root = new TreeNode(rootVal);
 
-        if (postorder.size() == 1) return root; //如果只有一个节点，即当根节点也是叶子节点，直接返回
+        int middleIndex = 0;
 
-        int middleIndex;//中序遍历根节点的位置
-        for (middleIndex = 0; middleIndex < inorder.size(); middleIndex++) {
-            if (inorder.get(middleIndex) == rootValue) break; //在中序遍历中遍历，找到根节点的位置
+        for (middleIndex = inorderStart; middleIndex < inorderEnd; middleIndex++) {
+            if (inorder[middleIndex] == root.val) break;
         }
 
-        List<Integer> leftInorder = new ArrayList<>(inorder.subList(0, middleIndex)); //用左闭右开的方式，在中序遍历中切割出左子树
-        List<Integer> rightInorder = new ArrayList<>(inorder.subList(middleIndex + 1, inorder.size())); //用左闭右开的方式，在中序遍历中切割出右子树
+        int leftInorderStart = inorderStart;
+        int leftInorderEnd = middleIndex;
+        int rightInorderStart = middleIndex + 1;
+        int rightInorderEnd = inorderEnd;
 
-        postorder.remove(postorder.size() - 1); //这样在下一次递归调用中，postorder 列表的最后一个元素就是当前子树的根节点。
+        int leftTreeSize = middleIndex - leftInorderStart;
 
-        List<Integer> leftPostorder = new ArrayList<>(postorder.subList(0, leftInorder.size())); //用左闭右开的方式，在后序遍历中切割出左子树
-        List<Integer> rightPostorder = new ArrayList<>(postorder.subList(leftInorder.size(), postorder.size())); //用左闭右开的方式，在后序遍历中切割出右子树
+        int leftPostOrderStart = postorderStart;
+        int leftPostOrderEnd = postorderStart + leftTreeSize;
+        int rightPostOrderStart = leftPostOrderEnd;
+        int rightPostOrderEnd = postorderEnd-1;
 
-        root.left = traversal(leftInorder, leftPostorder); //遍历左子树和右子树的中序和后序列表，并构建相应的子树。
-        root.right = traversal(rightInorder, rightPostorder); 
-
+        root.left = buildHelper(inorder, leftInorderStart, leftInorderEnd, postorder, leftPostOrderStart, leftPostOrderEnd);
+        root.right = buildHelper(inorder, rightInorderStart, rightInorderEnd, postorder, rightPostOrderStart, rightPostOrderEnd);
 
         return root;
+
     }
-    
+
 }
 
 // class Solution {
