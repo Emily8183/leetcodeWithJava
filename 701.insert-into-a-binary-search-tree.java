@@ -22,7 +22,7 @@
  */
 class Solution {
     public TreeNode insertIntoBST(TreeNode root, int val) {
-        if(root == null) {
+        if(root == null) { //遍历到叶子节点，即可插入
             TreeNode node = new TreeNode(val);
             return node;
         }
