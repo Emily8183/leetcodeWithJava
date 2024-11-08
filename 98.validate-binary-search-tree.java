@@ -5,6 +5,11 @@
  */
 
 // @lc code=start
+
+import java.util.Stack;
+
+import javax.swing.tree.TreeNode;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -22,31 +27,47 @@
  */
 class Solution {
 
-    //先记录前一个节点，全局变量
-    private TreeNode pre = null;
+    //迭代法
     public boolean isValidBST(TreeNode root) {
+        Stack<TreeNode> stack = new stack<>();
 
-        {
-            //采用中序遍历，检验是否符合二叉搜索树的特性
-            //如果根节点是空，说明是空树，满足所有二叉树条件，直接返回true
-            if(root == null) return true;
+        TreeNode pre = null;
 
-            boolean left = isValidBST(root.left);
+        if (root != null) stack.offer(root);
 
-            // 这两行必须在boolean left下面，因为必须先在左子树遍历完毕（左边永远比右边小）
-            if(pre !=null && pre.val >= root.val) return false;
+        while (!stack.isEmpty()) {
+            TreeNode curr = stack.peak();
 
-            pre = root;
-
-            boolean right = isValidBST(root.right);
-
-            return left && right;
 
         }
+        
+
+
+    
+
+        
         
     }
 
     
+}
+
+//递归(中序遍历)：使用pre虚拟节点遍历
+    private TreeNode pre = null;
+    public boolean isValidBST(TreeNode root) {
+
+        if(root == null) return true;
+
+        boolean left = isValidBST(root.left);
+
+        // 这两行必须在boolean left下面，因为必须先在左子树遍历完毕（左边永远比右边小）
+         if(pre !=null && pre.val >= root.val) return false;
+
+         pre = root;
+
+         boolean right = isValidBST(root.right);
+
+         return left && right;
 }
 
 //前序遍历
