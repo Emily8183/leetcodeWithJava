@@ -6,10 +6,6 @@
 
 // @lc code=start
 
-import java.util.Stack;
-
-import javax.swing.tree.TreeNode;
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -28,47 +24,63 @@ import javax.swing.tree.TreeNode;
 class Solution {
 
     //迭代法
+    //使用栈的原理，先将左侧的元素加入栈，每一层之间加入null作为标记
+    //curr = stack.peek(), 当curr == null的时候，通过设置pre和temp来比较null 前后数字大小；不符合平衡二叉树规律时，及时return false；
+    //
     public boolean isValidBST(TreeNode root) {
-        Stack<TreeNode> stack = new stack<>();
+        Stack<TreeNode> stack = new Stack<>();
 
         TreeNode pre = null;
 
-        if (root != null) stack.offer(root);
+        if (root != null) stack.push(root);
 
         while (!stack.isEmpty()) {
-            TreeNode curr = stack.peak();
+            TreeNode curr = stack.peek();
 
+            if (curr != null) {
+                stack.pop();
 
+                if (curr.right != null) {
+                    stack.push(curr.right);
+                }
+
+                stack.push(curr);
+                stack.push(null);
+                
+                if (curr.left != null) {
+                    stack.push(curr.left);
+                }
+            } else {
+                stack.pop();
+                TreeNode temp = stack.pop();
+                if (pre != null && pre.val >= temp.val) return false;
+                pre = temp;
+            }
         }
-        
 
-
-    
-
-        
-        
+        return true;
+   
     }
-
     
 }
 
 //递归(中序遍历)：使用pre虚拟节点遍历
-    private TreeNode pre = null;
-    public boolean isValidBST(TreeNode root) {
+//     private TreeNode pre = null;
+//     public boolean isValidBST(TreeNode root) {
 
-        if(root == null) return true;
+//         if(root == null) return true;
 
-        boolean left = isValidBST(root.left);
+//         boolean left = isValidBST(root.left);
 
-        // 这两行必须在boolean left下面，因为必须先在左子树遍历完毕（左边永远比右边小）
-         if(pre !=null && pre.val >= root.val) return false;
+//         // 这两行必须在boolean left下面，因为必须先在左子树遍历完毕（左边永远比右边小）
+//          if(pre !=null && pre.val >= root.val) return false;
 
-         pre = root;
+//          pre = root;
 
-         boolean right = isValidBST(root.right);
+//          boolean right = isValidBST(root.right);
 
-         return left && right;
-}
+//          return left && right;
+// }
 
 //前序遍历
 // class Solution {
