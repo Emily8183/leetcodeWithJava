@@ -5,6 +5,7 @@
  */
 
 // @lc code=start
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -31,26 +32,44 @@ class Solution {
     public void flatten(TreeNode root) {
 
         // LinkedList<TreeNode> list = new LinkedList<>(); //不能新建LinkedList,必须in place
-        dfs(root); 
-        //dfs辅助函数在原地修改树的结构，将每个节点的左子树移到右侧并形成一个链表结构. flatten 函数的作用只是启动 dfs，不需要也不使用 dfs 的返回值。
+        // 递归法：dfs辅助函数在原地修改树的结构，将每个节点的左子树移到右侧并形成一个链表结构. flatten 函数的作用只是启动 dfs，不需要也不使用 dfs 的返回值。
+        // dfs(root); 
 
+    // }
+
+    // private TreeNode dfs(TreeNode node) {
+    //     if (node == null) return null;
+
+    //     TreeNode leftTail = dfs(node.left); //左子树的尾节点
+    //     TreeNode rightTail = dfs(node.right);
+
+    //     if (node.left != null) {
+    //         leftTail.right = node.right; // 将左子树的尾节点连接到右子树的开头
+    //         node.right = node.left;  // 将左子树放到右边
+    //         node.left = null; //清空左子树
+    //     }
+
+    //     return rightTail != null ? rightTail : (leftTail != null ? leftTail : node);
+
+    //迭代法：主要逻辑就是pop out cur, 然后把右孩子及左孩子按顺序放进栈。再通过curr.right = stack.peek()来衔接
+    if (root == null) return;
+    
+    Stack<TreeNode> stack = new Stack<>();
+
+    stack.push(root);
+
+    while (!stack.isEmpty()) {
+        TreeNode curr = stack.pop();
+
+        if (curr.right != null) stack.push(curr.right);
+        if (curr.left != null ) stack.push(curr.left);
+
+        if (!stack.isEmpty()) curr.right = stack.peek();
+
+        curr.left = null;
+    
     }
-
-    private TreeNode dfs(TreeNode node) {
-        if (node == null) return null;
-
-        TreeNode leftTail = dfs(node.left); //左子树的尾节点
-        TreeNode rightTail = dfs(node.right);
-
-        if (node.left != null) {
-            leftTail.right = node.right; // 将左子树的尾节点连接到右子树的开头
-            node.right = node.left;  // 将左子树放到右边
-            node.left = null; //清空左子树
-        }
-
-        return rightTail != null ? rightTail : (leftTail != null ? leftTail : node);
-
-    }
+}
 }
 // @lc code=end
 
