@@ -27,11 +27,11 @@ class Solution {
 
     public TreeNode recursive(int[]nums, int leftIndex, int rightIndex) {
         // 递归终止条件 base case
-        if(rightIndex - leftIndex < 1) {//遍历到数组区间为0
+        if (leftIndex >= rightIndex) {//遍历到数组区间为0
             return null;
         }
 
-        if(rightIndex -leftIndex == 1) {//遍历到数组区间为1
+        if(nums.length == 1) {//遍历到数组区间为1
             return new TreeNode(nums[leftIndex]);
         }
 
@@ -47,7 +47,7 @@ class Solution {
 
         TreeNode root = new TreeNode(maxValue);
        
-        // 最大值所在的下标左区间 构造左子树
+        // 最大值所在的下标左区间 构造左子树,允许空节点进入递归
         root.left = recursive(nums, leftIndex, maxValueIndex);
         // 最大值所在的下标右区间 构造右子树
         root.right = recursive(nums, maxValueIndex+1, rightIndex);
