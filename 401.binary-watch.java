@@ -14,7 +14,7 @@ class Solution {
     public List<String> readBinaryWatch(int num) {
         
         //判断输入
-        if(num < 0) return result;
+        // if(num < 0) return result;
 
         //LED灯，前四个为小时，后六个为分钟
         int[] nums = {8,4,2,1,32,16,8,4,2,1};
