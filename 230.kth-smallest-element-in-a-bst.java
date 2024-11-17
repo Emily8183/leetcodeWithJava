@@ -30,7 +30,7 @@ class Solution {
         } else if (k == leftCount + 1) { //第k个数是根节点
             return root.val;
         } else {
-            return kthSmallest(root.right, k - leftCount -1);
+            return kthSmallest(root.right, k - leftCount - 1);
         }
         
     }
