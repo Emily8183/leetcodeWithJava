@@ -24,6 +24,7 @@ class Solution {
     }
     public void backtracking(int num,int[] nums,int start,int hour,int minute){
 
+        //如果亮灯数 num == 0，说明所有灯已经分配完，判断时间是否有效：
         if(num == 0){
 
             //判断时间是否正确
@@ -51,17 +52,17 @@ class Solution {
             /*回溯做选择*/
             //判断是小时还是分钟
             if(i < 4) {//小时
-                hour+=nums[i];
+                hour += nums[i];
             } else {
-                minute+=nums[i];
+                minute += nums[i];
             }
             //递归
             backtracking(num-1, nums, i+1, hour, minute);
             /*回溯取消选择*/
             if(i<4) {//小时
-                hour-=nums[i];
+                hour -= nums[i];
             } else {
-                minute-=nums[i];
+                minute -= nums[i];
             }
         }
     }
