@@ -22,17 +22,36 @@
  */
 class Solution {
     public TreeNode insertIntoBST(TreeNode root, int val) {
-        if(root == null) { 
-            TreeNode node = new TreeNode(val);
-            return node;
+        if (root == null) {
+           
+            return new TreeNode(val);
+        }
+
+        if (root.left == null && val < root.val) {
+             root.left = new TreeNode(val);
+        }
+
+        if (root.right == null && val > root.val) {
+            root.right = new TreeNode(val);
         }
 
         if (val < root.val) {
-        root.left= insertIntoBST(root.left, val);
-        } else if (val > root.val) {
-        root.right = insertIntoBST(root.right, val); 
+            insertIntoBST(root.left, val);
         }
+
+        if (val > root.val) {
+            insertIntoBST(root.right, val);
+        }
+
         return root;
+
+
+        // if (val < root.val) {
+        // root.left= insertIntoBST(root.left, val);
+        // } else if (val > root.val) {
+        // root.right = insertIntoBST(root.right, val); 
+        // }
+        // return root;
     }
 }
 // @lc code=end
