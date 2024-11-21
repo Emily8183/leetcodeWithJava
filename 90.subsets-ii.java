@@ -19,7 +19,6 @@ class Solution {
 
     private void backtracking(int[] nums, int startIndex){
         result.add(new ArrayList<>(path));
-        //path为空集时也可以添加进result
 
         if(startIndex >= nums.length) return; //终止条件可以省略，直接走下面的for loop, for loop中就有元素选择的范围，在for loop下加一个return就可以
 

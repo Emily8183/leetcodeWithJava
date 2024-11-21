@@ -7,36 +7,66 @@
 
 
 // @lc code=start
+
+// class Solution {
+
+//     List<List<Integer>> res = new ArrayList<>();
+//     LinkedList<Integer> path = new LinkedList<>();
+
+//     public List<List<Integer>> findSubsequences(int[] nums) {
+
+//         backtracking(nums, 0);
+
+//         return res;     
+//     }
+
+//     private void backtracking(int[] nums, int startIndex) {
+//         if (path.size() >= 2 ) {
+//             res.add(new ArrayList<>(path));
+//         }
+
+//         HashSet<Integer> used = new HashSet<>();
+
+//         for (int i = startIndex; i < nums.length; i++) {
+//             if (!path.isEmpty() && nums[i] < path.getLast() || used.contains(nums[i])) continue;
+
+//             used.add(nums[i]);// 记录这个元素在本层用过了，本层后面不能再用了
+//             path.add(nums[i]);
+//             backtracking(nums, i+1);
+//             path.removeLast();
+//         }
+//     }
+// }
+
 class Solution {
-    List<List<Integer>> result = new ArrayList<>();
+
+    List<List<Integer>> res = new ArrayList<>();
     LinkedList<Integer> path = new LinkedList<>();
+
     public List<List<Integer>> findSubsequences(int[] nums) {
-        backtracking(nums,0);
-        return result;
+        backtracking(nums, 0);
+
+        return res;     
     }
 
     private void backtracking(int[] nums, int startIndex) {
-        if(path.size()>=2) {
-            result.add(new ArrayList<>(path));
-  
+
+        boolean[] used = new boolean[201];
+
+        if (path.size() >= 2 ) {
+            res.add(new ArrayList<>(path));
         }
 
-        HashSet <Integer> used = new HashSet<>();
+        for (int i = startIndex; i < nums.length; i++) {
+            if (!path.isEmpty() && nums[i] < path.getLast()) continue;
+            if(used[nums[i] + 100]) continue; //nums[i] + 100 是为了将数字范围 [-100, 100] 映射到 [0, 200]。
 
-        for(int i = startIndex; i<nums.length; i++) {
-            if(!path.isEmpty() && nums[i]< path.getLast() || used.contains(nums[i])) continue;
-
-            used.add(nums[i]);
             path.add(nums[i]);
+            used[nums[i]+100] = true;
             backtracking(nums, i+1);
             path.removeLast();
-
-
         }
-
-
-
     }
-}
+ }
 // @lc code=end
 

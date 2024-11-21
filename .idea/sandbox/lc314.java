@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 
 class TreeNode {
     int val;
@@ -101,8 +99,8 @@ public class lc314 {
         //     if (root == null) return;
         //     min = Math.min(min, index); 
         //     max = Math.max(max, index); 
-        //     helper(root.left, index - 1);  // 遍历左子树
-        //     helper(root.right, index + 1); // 遍历右子树
+        //     helper(root.left, index - 1);  
+        //     helper(root.right, index + 1); 
         // }
 
         // public List<List<Integer>> verticalOrder(TreeNode root) {
