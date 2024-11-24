@@ -43,8 +43,37 @@ class Solution {
 
     // }
 
+
+    //第二种方法，用于bst
+    TreeNode root;
     public boolean findTarget(TreeNode root, int k) {
-}
+
+        if (this.root == null) this.root = root; //确保 this.root 只在第一次赋值,保留整棵树的原始根节点 (root)
+
+        if (root == null) return false;
+
+        if (search(root, k-root.val)) return true;
+
+        return findTarget(root.left, k) || findTarget(root.right, k);
+
+    }
+
+    public boolean search(TreeNode root, int target) {
+        TreeNode current = this.root; //使用 this.root 保证从根节点开始搜索
+
+        while (current != null) {
+            if (target > current.val) {
+            current = current.right;
+            } else if (target < current.val) {
+            current = current.left;
+            } else { 
+                return current != root;
+            }
+    }
+
+    return false;
+
+    }
 
 }
 // @lc code=end
