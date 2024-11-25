@@ -12,17 +12,17 @@ class Solution {
 
         //得出这个数字是几位数
         int div = 1;
-        while (x >= 10 * div) {
+        while (x / div >= 10) { //小心别溢出, 所以x >= 10 * div 改成x / div >= 10
             div *= 10;
         }
 
         //判断蕞左边数字和蕞右边数字是否相等，while loop, 如果不等，return false
-        int left = 0;
-        int right = 0;
+        // int left = 0;
+        // int right = 0;
 
         while (x > 0) {
-            left = x / div;
-            right = x % 10;
+            int left = x / div;
+            int right = x % 10;
 
             if (left != right) return false;
 
