@@ -8,7 +8,7 @@
  * goal: return int[] answer, answer[i] = the nearest higher number - current num, if none, answer[i] == 0;
  * solution: stack
  */
- */
+
 
 // @lc code=start
 class Solution {
@@ -17,19 +17,21 @@ class Solution {
         //iterate and add the number to stack,
         Stack<Integer> stack = new Stack<>();
 
-        int[] difference = new int(temperatures.length);
+        int[] answer = new int[temperatures.length];
+        // no need to define the last index, the initial value is 0 for each index
 
-        stack.push(temperatures[0]);
+        for (int i = 0; i < temperatures.length; i++) {
 
-        for (int i = 1; i < temperatures.length; i++) {
-
-            if (temperatures[i] > stack.peep()) {
-                stac
-            }
+            while (!stack.isEmpty() && temperatures[i] > temperatures[stack.peek()]) {
+                int prev = stack.pop();
+                answer[prev] = i - prev;
+            } 
+            stack.push(i);
 
         }
-        //if num > stack.pop(), calculate the index difference, add to the new array
-        //else, move forward
+        
+        return answer;
+            
         
     }
 }
