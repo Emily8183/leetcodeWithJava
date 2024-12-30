@@ -5,12 +5,7 @@ String s, lowercase
 goal: to find the first letter appears twice
 solution: 
 1) two pointers(doesn't work if the two nums arent adjacent)
-2) array, ascii
-
-
-a     b     c    c     baacz
-          f
-
+2) array, ascii(works) time complexity: O(n)； space complexity: O(1)
 
  * [2351] First Letter to Appear Twice
  */
