@@ -7,7 +7,7 @@
  * 1, find the index with the highest bar
  * 2, iterate from the most left bar, if the index < the most left bar, calculate the water amount
  * 3, else: update the most left bar
- * 4, same at the right side
+ * 4, same as the right side
  * 
  * [42] Trapping Rain Water
  */
