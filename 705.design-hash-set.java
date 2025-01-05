@@ -6,11 +6,12 @@
 
 // @lc code=start
 
-// create a node class
+// design a node first
 class ListNode {
     int key;
     ListNode next;
 
+    //constructure
     ListNode(int key) {
         this.key = key;
         this.next = null;
@@ -35,12 +36,12 @@ class MyHashSet {
 
         ListNode cur = set[index];
         while (cur.next != null) {
-            if (cur.key == key) return;
-            cur = cur.next;
+            if (cur.key == key) return; //if found the same number, just return 
+            cur = cur.next; //if didn't find the number, move cur to the end of the list
         } 
         
         if (cur.key != key) {
-            cur.next = new ListNode(key);
+            cur.next = new ListNode(key); //add the new node to the end of the list
         }
     }
     
@@ -48,11 +49,11 @@ class MyHashSet {
         int index = key % set.length;
 
         ListNode cur = set[index];
-        
+
         if (cur == null) return;
 
         if (cur.key == key) {
-            set[index] = cur.next;
+            set[index] = cur.next; //if cur.next == null, set[index] will be null
             return;
         }
 
