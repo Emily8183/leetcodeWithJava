@@ -22,6 +22,7 @@ class MyHashSet {
 
     private ListNode[] set;
 
+    //constructor
     public MyHashSet() {
         set = new ListNode[10000];   
     }
