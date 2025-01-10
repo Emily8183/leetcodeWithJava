@@ -30,7 +30,7 @@ class Solution {
            arr2[s2.charAt(i) - 'a']--;//把e去掉
         }
 
-        return false;
+        return matches(arr1,arr2);
     }
     
 
