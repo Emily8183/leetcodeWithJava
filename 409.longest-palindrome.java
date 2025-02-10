@@ -2,35 +2,40 @@
  * @lc app=leetcode id=409 lang=java
  *
  * [409] Longest Palindrome
+ * condition: String s (upperCase && lowerCase)
+ * goal: longest palindrome
+ * solution: HashSet
+ * 
+ * s = "abccccdd", int len = 1
+ * element * 2 => len+2
+ * only 1 single element => len+1
+ * dccaccd
  */
 
 // @lc code=start
+
 class Solution {
     public int longestPalindrome(String s) {
+        HashSet<Character> set = new HashSet<>();
+        int count = 0;
 
-        Set<Character> hashset = new HashSet<>();
-        //处理的是字符，因此是Character而不是String
+        for (int i = 0; i < s.length(); i++) {
 
-        char[] arr = s.toCharArray();
+            char c = s.charAt(i);
 
-        int result = 0;
-
-        for(char letter: arr){
-
-        
-            if(!hashset.contains(letter)){
-                hashset.add(letter);
-           
-            } else{
-                hashset.remove(letter);
-                result+=2;
+            if (set.contains(c)) {
+                count += 2;
+                set.remove(c);
+            } else {
+                set.add(c);
             }
+
         }
 
-        if(hashset.size() >0) result+=1;
-        //可以改成!hashset.isEmpty()
+        if (set.size() > 0) count = count+1; //说明剩下的都是个位数的元素，count只能加一次
 
-    return result;
+        return count;
+
     }
 }
 // @lc code=end
