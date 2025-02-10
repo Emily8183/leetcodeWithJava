@@ -2,54 +2,42 @@
  * @lc app=leetcode id=125 lang=java
  *
  * [125] Valid Palindrome
+condition: String s, upper -> lower, remove all non-alphanumeric
+goal: bool
+solution: two ptrs
  */
-
-//  
 
 // @lc code=start
 class Solution {
     public boolean isPalindrome(String s) {
-        //先转化为数组
+        // s = "race a car"
+        //     left    right
 
-        char[] chars = s.toCharArray();
+        int left = 0;
+        int right = s.length()-1;
 
-        return reverseString(chars, 0, chars.length-1);
-        
-    }
+        while (left <= right) {
+            char leftChar = s.charAt(left);
+            char rightChar = s.charAt(right);
 
-    private boolean reverseString(char[] arr, int start, int end){
-
-       //以下的while条件已经包含了终止条件
-
-        while(start<end) {
-            while(start<end && !alphaNum(arr[start])) {
-                start++;
-            }
-
-            while(end>start && !alphaNum(arr[end])){
-                end--;
-            }
-
-            if(Character.toLowerCase(arr[start]) != Character.toLowerCase(arr[end])){
+            if (!Character.isLetterOrDigit(leftChar)) {
+                left++;
+            } else if (!Character.isLetterOrDigit(rightChar)) {
+                right--;
+            } else {
+                if (Character.toLowerCase(leftChar) != Character.toLowerCase(rightChar)) {
                 return false;
             }
 
-            start++;
-            end--;
+            left++;
+            right--;
+            }
 
         }
 
         return true;
     }
 
-        private boolean alphaNum(char c){
-            return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9');
-            // 或者直接使用库函数return Character.isLetterOrDigit(c);
-        }
-
-
-
-    
 }
 // @lc code=end
 

@@ -16,7 +16,9 @@ prices = [7,1,5,3,6,4]
 
 max_profit = Math.max(prices[y] - prices[x]）
 
-solution: look for the smallest number
+solution: dp, look for the smallest number
+
+TC: O(n); SC: O(1)
 
 
  */
