@@ -21,6 +21,7 @@ Syntax: s.charAt(i), char ''，not ""
 // @lc code=start
 
 import java.util.Stack;
+import java.util.concurrent.PriorityBlockingQueue;
 
 class Solution {
     public boolean isValid(String s) {
@@ -43,16 +44,12 @@ class Solution {
             } else {
                 if (stack.isEmpty() || c != stack.peek() ) return false;
 
-                stack.pop();
+                stack.pop(); //这是关键的一步
             }
-
-   
 
         }
 
         return stack.isEmpty();
-
-        
     }
 }
 // @lc code=end
