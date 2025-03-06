@@ -3,48 +3,42 @@
  *
  * [88] Merge Sorted Array
  * 
- * //int[] num1
- * //int[] num2
- * //increasing order
- * //m and n
- * //Solution:
- * 1, iterate nums1[], and find the "real" end of the array, find the index
- * 2, compare the "end" of nums1[] and the end of nums2[]
- * 3, the bigger num goes to the end of nums1
+ * goal: int[] nums1, int[] nums2 <= sorted
+ * int m, int n
+ * solution: backward traversal
+ * 
+ *
  */
 
 // @lc code=start
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
 
-        if ( n == 0) return;
+        if (n == 0) return;
 
-        Integer endOfNums1 = m-1;
-        Integer endOfNums2 = nums2.length-1;
+        int end = nums1.length-1;
+        int endOfNums1 = m-1;
+        int endOfNums2 = n-1;
 
-        Integer finalEnd = nums1.length-1;
-
-        while (endOfNums1 >= 0 && endOfNums2 >=0) {
-
-             if (nums1[endOfNums1] > nums2[endOfNums2]) {
-                nums1[finalEnd] = nums1[endOfNums1];
+        while (endOfNums1 >= 0 && endOfNums2>= 0) {
+            
+            if (nums1[endOfNums1] > nums2[endOfNums2]) {
+                nums1[end] = nums1[endOfNums1];
                 endOfNums1--;
-      
-             } else {
-                nums1[finalEnd] = nums2[endOfNums2];
+            } else {
+                nums1[end] = nums2[endOfNums2];
                 endOfNums2--;
-               
-             }
-             finalEnd--;
+            }
 
-        }     
-        
+            end--;
+            
+        }
+
+        //handle the rest of the nums2
         while (endOfNums2 >= 0) {
-           
-                nums1[finalEnd] = nums2[endOfNums2];
-                endOfNums2--;
-                finalEnd--;
-                
+            nums1[end] = nums2[endOfNums2];
+            endOfNums2--;
+            end--;
         }
     }
         
