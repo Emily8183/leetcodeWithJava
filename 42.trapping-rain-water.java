@@ -19,6 +19,7 @@ class Solution {
        int peakIndex = 0;
        int water = 0;
 
+       
        for (int i = 0; i < height.length; i++) {
             if (height[i] > height[peakIndex]) {
                 peakIndex = i;
@@ -27,7 +28,6 @@ class Solution {
 
        int leftMost = 0;
 
-       //loop the left side
        for (int i = 0; i < peakIndex; i++) {
 
            if (height[leftMost] > height[i]) {

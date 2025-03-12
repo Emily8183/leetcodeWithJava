@@ -1,6 +1,8 @@
 /*
  * @lc app=leetcode id=141 lang=java
- *
+ * 举例：
+ * 1 -> 2 -> 3 -> 4 -> 5
+ *           7 <- 6
  * [141] Linked List Cycle
  */
 
