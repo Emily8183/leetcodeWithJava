@@ -17,29 +17,32 @@
  */
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode dummyHead = new ListNode (0, head);
+        //solution1: two passes
+        //can also solve the problem with two traverses
+        
+        //solution2: one pass
+        //need a dummyNode for the edge case when the head needs to be removed
+        ListNode dummyHead = new ListNode(-1);
 
-        ListNode fast = dummyHead;
+        dummyHead.next = head;
         ListNode slow = dummyHead;
+        ListNode fast = dummyHead;
 
-        // fast move n steps
-        while(n-- > 0 && fast != null) {
-            fast = fast.next;
+        //  [1, 2, 3,4,5]
+        //        fast
+        for (int i = 0; i <= n; i++) {
+            fast = fast.next; 
         }
 
-        // since we need to find one index ahead of the nth node,the fast pointer need to move one more step
-        fast = fast.next;
-
-        //now the fast and slow pointers can move together, 1,2,3 go!
+        //      [1,  2,   3,  4,   5]
+        //               slow         fast
         while (fast != null) {
             fast = fast.next;
             slow = slow.next;
         }
 
-        //remove the nth node
         slow.next = slow.next.next;
 
-        //return the head
         return dummyHead.next;
         
     }
