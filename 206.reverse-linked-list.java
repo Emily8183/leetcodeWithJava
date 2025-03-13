@@ -2,7 +2,13 @@
  * @lc app=leetcode id=206 lang=java
  *
  * [206] Reverse Linked List
- */
+ * 
+ * None ->  1     2       3      4   
+ * prev <- cur   temp
+           prev   cur
+               <-        temp
+                  prev   cur
+*/   
 
 // @lc code=start
 /**
@@ -16,7 +22,6 @@
  * }
  */
 class Solution {
-
     //解法一：双指针Iterative, 时间是O(n)，空间是O(1)
     public ListNode reverseList(ListNode head) {
         ListNode cur = head;
@@ -24,16 +29,13 @@ class Solution {
 
         while (cur != null) {
             ListNode temp = cur.next;
-            cur.next = pre;
+            cur.next = pre; //这一步改变箭头方向
             pre = cur;
             cur = temp;
         }
 
         return pre;
     }
-
-
-
     
     //解法二：递归,空间是O(n)
     // public ListNode reverseList(ListNode head) {
@@ -52,8 +54,7 @@ class Solution {
     //     cur.next = pre;
     //     return reverse(cur,temp);
     // }
-        
-    
+
 }
 // @lc code=end
 

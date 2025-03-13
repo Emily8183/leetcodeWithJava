@@ -2,44 +2,53 @@
  * @lc app=leetcode id=49 lang=java
  *
  * [49] Group Anagrams
+ * 1）convert letter to int[] count via Ascii
+ * 
+ * int[] count = new int[26];
+ * 
+ * "eat" => [1, 0,0,0,1,        1]
+ *           0, 1,2,3,4,
+ * 
+ * String pattern = Arrays.toString()
+ * 
+ * 2) Map：key - pattern, value: List<String> letters
+ * 
+ * 3) return map.values()
+ * 
+ * 
  */
 
 // @lc code=start
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
 
-        List<List<String>> result = new ArrayList<>();
-        
-        //把数组对应的index作为value存储
-        Map<String,Integer>  map = new HashMap<>();
+        HashMap<String, List<String>> map = new HashMap<>();
 
-        for (String str: strs) {
-            String pattern = getPattern(str);
+        for (String word : strs) {
+            int[] counts = new int[26];
 
-            if (map.containsKey(pattern)) { //检查string有没有123
-                result.get(map.get(pattern)).add(str); //map.get(123), 出来的是索引; result.get(索引)
-            } else {
-                List<String> temp = new ArrayList<>();
-                temp.add(str); //add"tea"
-                result.add(temp);
-                map.put(pattern, result.size()-1); 
-                //["123", 0], 新分组在 result 的位置是索引 0，即 result.size()-1 = 1-1 = 0
+            for (char c : word.toCharArray()) {
+
+                counts[c-'a']++;
             }
+
+            String pattern = Arrays.toString(counts);
+
+            map.putIfAbsent(pattern, new ArrayList<>());
+            map.get(pattern).add(word);
+           
         }
 
-        return result;
-        
-    }
+        return new ArrayList<>(map.values());
 
-    private String getPattern(String str) {
-        int[] pattern = new int[26];
 
-        for (char c : str.toCharArray()) {
-            pattern[c - 'a']++; //这里的pattern是一个数字, 比如“123”
-        }
 
-        return Arrays.toString(pattern);
-    }
+     }
 }
 // @lc code=end
 
