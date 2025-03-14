@@ -2,6 +2,8 @@
  * @lc app=leetcode id=19 lang=java
  *
  * [19] Remove Nth Node From End of List
+ * //two ptrs
+ * //dummyNode
  */
 
 // @lc code=start
@@ -23,8 +25,9 @@ class Solution {
         //solution2: one pass
         //need a dummyNode for the edge case when the head needs to be removed
         ListNode dummyHead = new ListNode(-1);
-
         dummyHead.next = head;
+        // ListNode dummyHead = new ListNode (0, head);
+
         ListNode slow = dummyHead;
         ListNode fast = dummyHead;
 
