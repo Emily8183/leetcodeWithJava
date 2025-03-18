@@ -32,7 +32,7 @@ class Solution {
             cur = cur.next;
         }
 
-        //step2: add on the next pointer and random pointer
+        //step2: add on the next pointer and the random pointer
         cur = head;
 
         while (cur != null) {
