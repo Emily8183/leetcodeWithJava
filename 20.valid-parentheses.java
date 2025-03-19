@@ -21,7 +21,6 @@ Syntax: s.charAt(i), char ''，not ""
 // @lc code=start
 
 import java.util.Stack;
-import java.util.concurrent.PriorityBlockingQueue;
 
 class Solution {
     public boolean isValid(String s) {
