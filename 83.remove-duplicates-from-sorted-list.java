@@ -2,6 +2,10 @@
  * @lc app=leetcode id=83 lang=java
  *
  * [83] Remove Duplicates from Sorted List
+ * two ptrs
+ * this problem doesnt have to set dummyHead becuz the first number will always be kept
+ * 1) how to remove a node, cur.next = cur.next.next
+ * 2) while loop condition 
  */
 
 // @lc code=start
@@ -18,19 +22,19 @@
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
 
-        if (head == null) {
-            return head;
-        }
-
         ListNode cur = head;
 
-        while (cur.next != null) {
-            if(cur.next.val == cur.val) {
-            cur.next = cur.next.next;
-            } else cur = cur.next;
+        while (cur != null && cur.next != null) {
+
+            if (cur.val == cur.next.val) {
+                cur.next = cur.next.next;
+            } else {
+                cur = cur.next;
+            }  
         }
 
         return head;
+ 
         
     }
 }
