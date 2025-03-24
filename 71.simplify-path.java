@@ -3,49 +3,55 @@
  *
  * [71] Simplify Path
  * 
- * //遍历到最后如果还有/，去掉
- * //遍历到多个/, 保留第一个，剩下的skip
- * //遍历到../，stack弹出 (照顾/../的情况)
- * //保留/.../
- * //stringbuilder
- * //遍历到最后一个，去掉/,不需要额外操作，不加到栈里就可以. if (c == "/" &&后面也是//) continue
+情况1:
+// or /// = >  /
+
+情况2: 
+. : 可省略,但不需要弹出previous directory
+
+情况2:
+.. => previous directory => stack.pop() 
+
+情况3:
+如果蕞后为空,需要加上root directory
+
+注意:
+// } else if (component.equals("..") && !stack.isEmpty()) { 
+//合并后的 else if 语句不会执行 pop()（因为 !stack.isEmpty() 不满足），但它也不会继续到 else 逻辑，而是 直接跳过当前循环，进入下一个 component 处理。
  *
  */
 
 // @lc code=start
 
+import java.util.Stack;
+
 class Solution {
     public String simplifyPath(String path) {
 
-        Stack<String> stack = new Stack<>();
-
         String[] components = path.split("/");
 
-        for(String component : components) { 
+        Stack<String> stack = new Stack<>();
 
-            if (component.isEmpty() || component.equals(".")) continue;
+        StringBuilder sb = new StringBuilder();
 
-            if (component.equals("..")) { //前一个不是null的话
+        for (String component : components) {
+            if (component.equals("") || component.equals(".") ) {
+                continue;
+                
+            } else if (component.equals("..")) {
                 if (!stack.isEmpty()) {
                     stack.pop();
-                 } 
-
-                continue;
-            } 
-
-            stack.push(component);
-
+                }
+            } else {
+                stack.push(component);
+            }            
         }
 
-        
-        StringBuilder result = new StringBuilder();
-
-        // 把stack转为string
-        for (String dir : stack) {
-            result.append("/").append(dir);
+        for (String s : stack) {
+            sb.append("/").append(s);
         }
 
-        return result.length() > 0 ? result.toString() : "/";
+        return sb.isEmpty() ? "/" : sb.toString();
         
     }
 }
