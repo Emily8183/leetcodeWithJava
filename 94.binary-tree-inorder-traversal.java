@@ -3,7 +3,7 @@
  *
  * [94] Binary Tree Inorder Traversal
  * 
- * 中序遍历，可以用递归遍历栈，也可以手动遍历栈
+ *
  */
 
 // @lc code=start
@@ -27,19 +27,38 @@ import java.util.Stack;
  */
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        //Solution 1: Recursion
+    //Solution 1: Recursion
+    //     List<Integer> res = new ArrayList<>();
+    //     traverse(root, res);
+
+    //     return res;
+    // }
+
+    // private void traverse(TreeNode root, List<Integer> list) {
+    //     if (root == null) return; 
+
+    //     traverse(root.left,list);
+    //     list.add(root.val);
+    //     traverse(root.right,list);
+
+    //Solution 2: stack (manual recursion)
         List<Integer> res = new ArrayList<>();
-        traverse(root, res);
+        Stack<TreeNode> stack = new Stack<>();
 
+        TreeNode cur = root;
+
+        while (cur != null || !stack.isEmpty()) {
+            if (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            } else {
+                cur = stack.pop();
+                res.add(cur.val);
+                cur = cur.right;
+            }
+        }
+        
         return res;
-    }
-
-    private void traverse(TreeNode root, List<Integer> list) {
-        if (root == null) return; 
-
-        traverse(root.left,list);
-        list.add(root.val);
-        traverse(root.right,list);
 
     }
 }
