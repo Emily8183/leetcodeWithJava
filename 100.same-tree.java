@@ -22,20 +22,16 @@
  */
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        //check the root first
-        //if the root both are null, return true
+
+        //base case
         if (p == null && q == null) return true;
 
-        //if one root is null, the other isnt, return false OR if both root arent null but valid are different, return false
-        if (p == null || q == null) return false;
+        if (p == null || q == null || p.val != q.val ) return false;
 
-        if (p.val != q.val) return false;
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 
-        //recursion of the left and right tree
-        boolean compareLeft = isSameTree(p.left, q.left);
-        boolean compareRight = isSameTree(p.right, q.right);
 
-        return compareLeft && compareRight;
+       
     }
 }
 // @lc code=end
