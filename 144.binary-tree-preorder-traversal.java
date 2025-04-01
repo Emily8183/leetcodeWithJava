@@ -8,8 +8,6 @@
 
 import java.util.Stack;
 
-import javax.swing.tree.TreeNode;
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -26,50 +24,23 @@ import javax.swing.tree.TreeNode;
  * }
  */
 class Solution {
-
-    //recursion
-    // public List<Integer> preorderTraversal(TreeNode root) {
-    //     List<Integer> result = new ArrayList<>();
-    //     preorder(root,result);
-    //     return result;    
-    // }
-
-    // public void preorder(TreeNode root, List<Integer> list) {
-    //     if (root == null) {
-    //         return;
-    //     }
-
-    //     list.add(root.val);
-    //     preorder(root.left,list);
-    //     preorder(root.right,list);
-    // }
-
-    //iterative
     public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
-
-        Stack<TreeNode> stack = new Stack<>();
-
-        if (root == null) return result; 
-
-        stack.push(root); //不是root.val
-
-        while (!stack.isEmpty()) {
-            TreeNode node = stack.pop();
-            result.add(node.val); 
-
-            if (node.right != null) {
-                stack.push(node.right);
-            }
-
-            if (node.left != null) {
-                stack.push(node.left);
-            }
-        }
-
-        return result;
+        //recursion
+        List<Integer> res = new ArrayList<>();
+        traverse(root, res);
+        return res;
 
     }
+
+    private void traverse(TreeNode root, List<Integer> list) {
+
+        if (root == null) return;
+
+        list.add(root.val);
+        traverse(root.left, list);
+        traverse(root.right, list);
+    }
+
 }
 // @lc code=end
 

@@ -70,7 +70,7 @@ class Solution {
 
         }
 
-        Collections.reverse(result);
+        Collections.reverse(result);//在原有基础上修改,不创建新的列表
 
         return result;
 
