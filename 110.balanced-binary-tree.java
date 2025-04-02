@@ -22,31 +22,26 @@
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
+
         return getHeight(root) != -1;
         
     }
 
-    //明确递归的参数和返回值
-    private int getHeight(TreeNode root) {
-        
-    //明确终止条件
-        if(root == null) {
-            return 0;
-        } 
+    public int getHeight(TreeNode node) {
 
-        int leftHeight = getHeight(root.left);
-        if(leftHeight == -1) return -1;
+        if (node == null) return 0;
 
-        int rightHeight = getHeight(root.right);
-        if(rightHeight == -1) return -1;
+        int leftHeight = getHeight(node.left);
+        if (leftHeight == -1) return -1;
 
-    // 左右子树高度差大于1，return -1表示已经不是平衡树了
-        if(Math.abs(leftHeight-rightHeight) > 1) {
-            return -1;
-        } else {
-            return Math.max(leftHeight, rightHeight) + 1;
-        }
-        
+        int rightHeight = getHeight(node.right);
+        if (rightHeight == -1) return -1;
+
+        int heightDifference = Math.abs(leftHeight - rightHeight);
+
+        if (heightDifference > 1) return -1;
+        else return Math.max(leftHeight, rightHeight) + 1;
+
     }
 }
 // @lc code=end
