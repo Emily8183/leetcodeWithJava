@@ -23,25 +23,22 @@
 class Solution {
     public boolean isBalanced(TreeNode root) {
 
-        return getHeight(root) != -1;
-        
+        boolean[] isBalanced = new boolean[]{true};//默认长度为1,也可以写成boolean[] isBalanced = {true};
+        checkBalanced(root, isBalanced);
+        return isBalanced[0];
+
     }
 
-    public int getHeight(TreeNode node) {
+    public int checkBalanced(TreeNode root, boolean[] isBalanced) {
 
-        if (node == null) return 0;
+        if (root == null) return 0;
 
-        int leftHeight = getHeight(node.left);
-        if (leftHeight == -1) return -1;
+        int leftHeight = checkBalanced(root.left, isBalanced);
+        int rightHeight = checkBalanced(root.right, isBalanced);
 
-        int rightHeight = getHeight(node.right);
-        if (rightHeight == -1) return -1;
+        if (Math.abs(leftHeight-rightHeight) > 1) isBalanced[0] = false; //这里只需要修改boolean值,并不需要返回中断递归
 
-        int heightDifference = Math.abs(leftHeight - rightHeight);
-
-        if (heightDifference > 1) return -1;
-        else return Math.max(leftHeight, rightHeight) + 1;
-
+        return Math.max(leftHeight,rightHeight) + 1;
     }
 }
 // @lc code=end
