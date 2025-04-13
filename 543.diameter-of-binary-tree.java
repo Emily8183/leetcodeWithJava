@@ -31,14 +31,17 @@
  */
 class Solution {
 
-    int max = 0; //所以max放在这一行，作为class成员变量
-
     public int diameterOfBinaryTree(TreeNode root) {
 
-        //int max = 0; //int是基本类型的值，所以即使作为参数传到dfs, dfs()只是复制了一个副本，不影响原来的max，所以不要传
+        if (root == null) return 0;
 
-        dfs(root);
-        return max;
+        int leftHeight = dfs(root.left);
+        int rightHeight = dfs(root.right);
+
+        int leftMax = diameterOfBinaryTree(root.left);
+        int rightMax = diameterOfBinaryTree(root.right);
+
+        return Math.max(leftHeight+rightHeight, Math.max(leftMax, rightMax));
 
     }
 
@@ -47,9 +50,6 @@ class Solution {
 
         int leftHeight = dfs(node.left);
         int rightHeight = dfs(node.right);
-
-        max = Math.max(leftHeight + rightHeight, max);
-
 
         return Math.max(leftHeight, rightHeight) + 1;
     }
