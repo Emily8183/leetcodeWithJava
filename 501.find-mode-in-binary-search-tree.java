@@ -24,59 +24,52 @@ import java.util.ArrayList;
  * }
  */
 class Solution {
-    ArrayList<Integer> resList;
-    int maxCount;
-    int count;
-    TreeNode pre;
+    private int maxCount = 0;
+
+    private int count = 0;
+    
+    private List<Integer> list = new ArrayList<>();
+
+    private Integer pre = null;
+
     public int[] findMode(TreeNode root) {
-        //设置全局变量
-        resList = new ArrayList<>();
-        maxCount = 0;
-        count = 0;
-        pre = null;
-        updateMaxCount(root);
-        int[] res = new int[resList.size()];
-        for(int i=0;i<resList.size();i++) {
-            res[i] = resList.get(i);
+        dfs(root, list);
+
+        int[] arr = new int[list.size()];
+
+        for (int i = 0; i < list.size(); i++) {
+            arr[i] = list.get(i);
         }
-        return res;
+
+        return arr;
     }
 
-        //递归函数,使用中序遍历
-        public void updateMaxCount (TreeNode root){
-            if(root == null) {
-                return;
-                //因为return void, 这边直接return 退出即可；
-            }
-            //左
-            updateMaxCount(root.left);
+    private void dfs(TreeNode node, List<Integer> list) {
+        if (node == null) return;
 
-            int rootValue = root.val;
+        dfs(node.left, list);
 
-            //中
-            if(pre == null || rootValue != pre.val) {
-                count = 1;
-            } else {
-                count++;
-            }
-
-            //判断count是否大于maxCount，如果比maxCount大，赋值给maxCount。同时需要清空resList
-
-            if(count > maxCount) {
-                resList.clear();
-                resList.add(rootValue);
-                maxCount = count;
-            } else if(count == maxCount) {
-                resList.add(rootValue);
-            }
-
-            pre=root;
-
-            //右
-            updateMaxCount(root.right);
-
+        if (pre != null && pre == node.val) { //注意先要check pre not null，理由见笔记
+            count++;
+        } else {
+            count = 1;
         }
 
-}
+        if (count == maxCount) {
+            list.add(node.val);
+        } else if (count > maxCount) {
+            list.clear();
+            list.add(node.val);
+            maxCount = count;
+        }
+
+        //处理中间，assign先
+        pre = node.val;
+
+        dfs(node.right, list);
+
+    }
+
+ }
 // @lc code=end
 
