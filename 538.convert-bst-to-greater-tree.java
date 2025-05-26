@@ -19,31 +19,43 @@
  *         this.right = right;
  *     }
  * }
+ * 
+ * Solution: 1) recursion, 2) iterative
  */
+
 class Solution {
 
-    int sum;
+    //解法2： 迭代法
     public TreeNode convertBST(TreeNode root) {
 
-        sum =0;
-        
-        convertBST1(root);
-        return root;
-    }
+        if (root == null) return root;
 
+        Stack<TreeNode> stack = new Stack<>();
 
-        private void convertBST1(TreeNode root) {
-            if(root == null) {
-                return;
+        int total = 0;
+
+        TreeNode cur = root;
+
+        while (!stack.isEmpty() || cur != null) {
+            while (cur != null) { //先查看右
+                stack.push(cur);
+                cur = cur.right;
             }
 
-            // 反中序遍历
-            convertBST1(root.right);
-            sum+= root.val;
-            root.val=sum;
-            convertBST1(root.left);
+            cur = stack.pop();
 
+            total += cur.val;
+
+            cur.val = total; //更新数值
+
+            cur = cur.left; //查看左
         }
+
+        return root;
+
+       
+    }
+
 }
 // @lc code=end
 

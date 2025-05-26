@@ -23,52 +23,46 @@
 class Solution {
     public int maxDepth(TreeNode root) {
         //递归
-        // if(root == null) return 0;
-        //节点为空时，深度为零
+       if (root == null) return 0;
 
-        //使用后序遍历法，左右中，因为根节点的高度就是二叉树的最大深度，所以本题中我们通过后序求的根节点高度来求的二叉树最大深度。
-        // int left = maxDepth(root.left);
-        // int right = maxDepth(root.right);
-        // int maxHeight = Math.max(left,right) + 1;
-        //确定单层递归的逻辑：
-        //先求它的左子树的深度，再求右子树的深度，最后取左右深度最大的数值
-        //再+1 （加1是因为算上当前中间节点）就是目前节点为根节点的树的深度。
+       int leftDepth = maxDepth(root.left) + 1;
+       int rightDepth = maxDepth(root.right) + 1;
 
-        // return maxHeight;
+       return Math.max(leftDepth,rightDepth);
 
         //迭代法
-        if (root == null) return 0;
+        // if (root == null) return 0;
 
-        if (root.left == null && root.right == null) return 1; 
+        // if (root.left == null && root.right == null) return 1; 
 
-        Queue<TreeNode> que = new LinkedList<>();
+        // Queue<TreeNode> que = new LinkedList<>();
 
-        que.offer(root);
+        // que.offer(root);
 
-        int depth = 0;
+        // int depth = 0;
 
-        while (!que.isEmpty()) {
+        // while (!que.isEmpty()) {
 
-            int len = que.size();
+        //     int len = que.size();
 
-            while (len > 0) {
+        //     while (len > 0) {
                 
-                TreeNode temp = que.poll();
+        //         TreeNode temp = que.poll();
                     
-                    if (temp.left != null) {
-                        que.offer(temp.left);
-                    } 
+        //             if (temp.left != null) {
+        //                 que.offer(temp.left);
+        //             } 
                     
-                    if (temp.right != null) {
-                        que.offer(temp.right);
-                    }
-                len--;
-            }
+        //             if (temp.right != null) {
+        //                 que.offer(temp.right);
+        //             }
+        //         len--;
+        //     }
 
-            depth++;
-        }
+        //     depth++;
+        // }
 
-        return depth;
+        // return depth;
     }
 }
 // @lc code=end

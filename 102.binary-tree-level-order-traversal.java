@@ -7,8 +7,7 @@
 // @lc code=start
 
 import java.util.Deque;
-
-import javax.swing.tree.TreeNode;
+import java.util.Queue;
 
 /**
  * Definition for a binary tree node.
@@ -27,47 +26,41 @@ import javax.swing.tree.TreeNode;
  */
 class Solution {
 
-    public List<List<Integer>> resList = new ArrayList<List<Integer>>();
+    List<List<Integer>> resList = new ArrayList<>();
+
     public List<List<Integer>> levelOrder(TreeNode root) {
+
         queueResult(root);
+
         return resList;
     }
 
     public void queueResult(TreeNode node) {
 
-       //early return
        if (node == null) return;
 
-       //创建一个队列，把root放进队列
-       Queue<TreeNode> que = new LinkedList<TreeNode>();
+       Queue<TreeNode> que = new LinkedList<>();
        que.offer(node);
 
-       //while loop，当队列不为空
        while (!que.isEmpty()) {
-        //记录队列的size, 此时size = 1;
-        int len = que.size();
+            int len = que.size();
 
-        //创建一个List，存取每一层的元素，最后这个List要加到resList
-        List<Integer> list = new ArrayList<Integer>();
+            List<Integer> list = new ArrayList<>();
 
-        while (len > 0) {
-            TreeNode tempNode = que.poll();
-            list.add(tempNode.val);
+            while (len > 0) {
+              
+                TreeNode temp = que.poll();
 
-            //只要队列的size>1，就陆续不断把元素拿出队列，root有左右两个孩子，加入队列，更新size = 2
-            if (tempNode.left != null) {
-                que.offer(tempNode.left);
-            } 
-            
-            //注意这里不是else if关系
-            if (tempNode.right != null) {
-                que.offer(tempNode.right);
+                list.add(temp.val);
+
+                if (temp.left != null) que.offer(temp.left);
+                if (temp.right != null) que.offer(temp.right);
+
+                len--;
+
             }
 
-            len--;
-        } 
-
-        resList.add(list);
+            resList.add(list);
 
        }
 

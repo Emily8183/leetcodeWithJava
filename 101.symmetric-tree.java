@@ -2,6 +2,7 @@
  * @lc app=leetcode id=101 lang=java
  *
  * [101] Symmetric Tree 对称
+ * 把左树的左节点和右树的右节点比较
  */
 
 // @lc code=start
@@ -23,23 +24,20 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        return compare(root.left, root.right);
+
+        if (root == null) return true;
+
+        return comparison(root.left, root.right);
     }
 
-    //排除空节点，排除对应值不相同，往下递归
-    private boolean compare(TreeNode left, TreeNode right) {
-  
-        if(left == null & right == null) return true;
-        
-        if(left == null || right == null) return false;
+    public boolean comparison(TreeNode left, TreeNode right) {
+        if (left == null && right == null) return true;
 
-        if (left.val != right.val) return false;
+        if (left == null || right == null || left.val != right.val) return false;
 
-        boolean compareOuter = compare(left.left, right.right);
-        boolean compareInner = compare(left.right, right.left);
+        return comparison(left.left, right.right) && comparison(left.right, right.left);
 
-        return compareOuter && compareInner;
-        
+
     }
 }
 // @lc code=end
